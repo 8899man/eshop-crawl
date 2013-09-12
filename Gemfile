@@ -26,6 +26,8 @@ gem "inherited_resources"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'activeadmin-mongoid'
+gem 'jquery-ui-rails'
+gem 'jquery-ui-bootstrap-rails'
 
 group :development do
   gem 'better_errors'
