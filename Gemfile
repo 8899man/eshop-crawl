@@ -14,6 +14,7 @@ gem 'figaro'
 gem 'mongoid'
 gem 'rolify'
 gem 'simple_form'
+
 gem 'money-rails'
 gem 'cells'
 gem 'rspec-cells', :group => [:development, :test]
@@ -24,6 +25,8 @@ gem 'rack-raw-upload', '>= 1.1.0'
 gem "inherited_resources"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'activeadmin-mongoid'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
