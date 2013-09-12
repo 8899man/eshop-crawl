@@ -3,6 +3,6 @@ class WinePriceHistory
   field :url, type: String
   field :current_price, type: Money
   field :tag_price, type: Money
-  embedded_in :wine
-  embedded_in :website
+  belongs_to :wine
+  belongs_to :website
 end
