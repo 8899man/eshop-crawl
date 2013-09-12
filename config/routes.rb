@@ -1,4 +1,6 @@
 WineCrawl::Application.routes.draw do
+  resources :wines
+  #resources :wine_price_histories
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
