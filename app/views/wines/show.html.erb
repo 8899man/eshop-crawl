@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @wine.name %>
+</p>
+
+<p>
+  <b>Introduction:</b>
+  <%= @wine.introduction %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @wine.description %>
+</p>
+
+<p>
+  <b>Min price:</b>
+  <%= @wine.min_price %>
+</p>
+
+<p>
+  <b>Current price:</b>
+  <%= @wine.current_price %>
+</p>
+
+<p>
+  <b>Min starting price:</b>
+  <%= @wine.min_starting_price %>
+</p>
+
+<p>
+  <b>Max starting price:</b>
+  <%= @wine.max_starting_price %>
+</p>
+
+
+<%= link_to 'Edit', edit_wine_path(@wine) %> |
+<%= link_to 'Back', wines_path %>
