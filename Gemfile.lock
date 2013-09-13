@@ -102,6 +102,9 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
+    ethon (0.6.1)
+      ffi (>= 1.3.0)
+      mime-types (~> 1.18)
     eventmachine (1.0.3)
     execjs (2.0.1)
     factory_girl (4.2.0)
@@ -280,6 +283,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    typhoeus (0.6.5)
+      ethon (~> 0.6.1)
     tzinfo (0.3.37)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
@@ -333,4 +338,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   simple_form
   thin
+  typhoeus
   uglifier (>= 1.0.3)

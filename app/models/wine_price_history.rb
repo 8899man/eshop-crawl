@@ -10,4 +10,6 @@ class WinePriceHistory
   belongs_to :wine
   belongs_to :website
   taggable_on :event_types
+
+  scope :recent,desc(:created_at)
 end
