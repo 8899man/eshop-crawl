@@ -6,7 +6,7 @@
 <h2>价格信息</h2>
 
 <%= content_tag :dl,class: 'dl-horizontal' do %>
-  <%= d @wine, :min_price %>
   <%= d @wine, :current_price %>
-  <%= d @wine, :fix_price %>
+  <%= d @wine, :fit_price %>
+  <%= d @wine, :min_price %>
 <% end -%>

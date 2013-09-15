@@ -199,7 +199,7 @@ zh-CN:
       website: 网站
     attributes:
       wine:
-        min_price: 历史低价
+        min_price: 历史最低价
         current_price: 现价
         fit_price: 建议入手价
 

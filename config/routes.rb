@@ -6,7 +6,7 @@ WineCrawl::Application.routes.draw do
   authenticated :user do
     root :to => 'home#index'
   end
-  root :to => "home#index"
+  root :to => "wines#index"
   devise_for :users
   resources :users
   ActiveAdmin.routes(self)
