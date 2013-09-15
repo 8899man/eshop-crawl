@@ -1,4 +1,4 @@
-ActiveAdmin.register WinePriceHistory do
+ActiveAdmin.register WinePrice do
   form do |f|
     f.inputs do
       f.input :url

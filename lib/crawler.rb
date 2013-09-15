@@ -3,11 +3,7 @@ class Crawler
     raise ' '
   end
 
-  def get_all
-    raise ' '
-  end
-
-  def get(id)
+  def get(wine_monitor)
     raise ' '
   end
 end

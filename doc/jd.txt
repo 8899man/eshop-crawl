@@ -1,0 +1,22 @@
+报价
+http://p.3.cn/prices/get?skuid=J_1017288713
+http://p.3.cn/prices/get?skuid=J_:id
+[{"id":"J_1017288713","p":"82.00","m":"138.00"}]
+
+副标题
+http://jprice.jd.com/adslogan/598302-setproductadwords.ad
+http://jprice.jd.com/adslogan/:id-setproductadwords.ad
+setproductadwords({"AdWordList":[{"waretitle":"\u0033\u0032\u0038\u0038\u518D\u8FD4\u0031\u0030\u0030\u5143\u5238\uFF01\u3010\u91D1\u79CB\u98CE\u66B4\u00B7\u75AF\u72C2\u518D\u7EED\u0031\u5929\u3011\u9650\u65F6\u52A0\u9001\u7CBE\u54C1\u708A\u5177\u5957\u88C5\uFF01\u4ECA\u665A\u0032\u0034\u70B9\u7ED3\u675F\uFF01\u6B64\u4EF7\u592A\u9707\u64BC\u6B27\u5F0F\u9AD8\u6548\u9759\u5438\u9500\u91CF\u51A0\u519B\u5957\u88C5\uFF0C\u591A\u5730\u5E93\u5B58\u544A\u6025\u0020\u624B\u6162\u540E\u6094\uFF01","wid":598302}]})
+
+促销信息
+http://jprice.360buy.com/pageadword/202567-1-1.html?callback=Promotions.set
+ Promotions.set(
+ {"skuId":"202567","subsidyMoney":null,
+ "promotionInfoList":[
+ {"percent":0.0,"price":null,"reward":null,"maxNum":0,"minNum":0,"fullRefundType":0,"discount":"15.00","score":0,"limitUserType":0,"needNum":0,"deliverNum":0,"rebate":0.0,"promoId":"90314041","promoEndTime":1379296800000,"promoType":1,"adword":null,"userLevel":50,"adwordCouponList":null,"adwordGiftSkuList":null,"addMoney":null,"haveFullRefundGifts":false,"adwordUrl":null,"needMondey":null,"topMoney":null,"fullLadderDiscountList":null,"limitTimePromo":0,"extType":0,"mzNeedMoney":null,"mzNeedNum":0},
+  ## discount:"15.00" 直降15
+ {"percent":0.0,"price":null,"reward":"70.0","maxNum":0,"minNum":0,"fullRefundType":1,"discount":null,"score":0,"limitUserType":0,"needNum":0,"deliverNum":0,"rebate":0.0,"promoId":"90273698","promoEndTime":0,"promoType":10,"adword":"","userLevel":0,"adwordCouponList":null,"adwordGiftSkuList":null,"addMoney":"0.0","haveFullRefundGifts":false,"adwordUrl":"http://sale.jd.com/act/R5jdwPIFb0U4GHo.html","needMondey":"300.0","topMoney":"0.0","fullLadderDiscountList":null,"limitTimePromo":0,"extType":0,"mzNeedMoney":null,"mzNeedNum":0}],
+## reward:"70.0",needMondey:"300.0" 满减300减70
+##"promoId":"90273698" 满减ID？  "promoType":10,满减分类
+##"adwordUrl":"http://sale.jd.com/act/R5jdwPIFb0U4GHo.html", 活动网址
+ "skuExtInfo":"","infoList":[]});

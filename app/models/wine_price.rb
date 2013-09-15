@@ -1,4 +1,4 @@
-class WinePriceHistory
+class WinePrice
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::TaggableOn
@@ -12,4 +12,17 @@ class WinePriceHistory
   taggable_on :event_types
 
   scope :recent,desc(:created_at)
+
+  before_validation :last_not_same
+
+  def last_not_same
+    last_price = self.wine.wine_prices.recent.first
+    if last_price and self.same?(last_price)
+      self.errors.add :current_price, :same
+    end
+  end
+
+  def same?(wine_price)
+    [current_price,tag_price] == [wine_price.current_price, wine_price.tag_price]
+  end
 end

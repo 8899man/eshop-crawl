@@ -9,6 +9,7 @@ class Wine
   field :current_price, type: Money
   field :min_starting_price, type: Money
   field :max_starting_price, type: Money
-  has_many :wine_price_histories
+  has_many :wine_prices
+  has_many :wine_monitors
   taggable_on :categories
 end
