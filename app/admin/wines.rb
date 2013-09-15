@@ -6,9 +6,9 @@ ActiveAdmin.register Wine do
       f.input :description
       f.input :min_price
       f.input :current_price
-      f.input :min_starting_price
-      f.input :max_starting_price
+      f.input :fit_price
       f.input :categories
+      f.input :image
     end
     f.actions
   end

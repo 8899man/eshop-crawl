@@ -1,3 +1,4 @@
+
 #----------------------------------------------------------------------------
 # Ignore these files when commiting to a git repository.
 #
@@ -75,3 +76,16 @@ pickle-email-*.html
 
 # Ignore application configuration
 /config/application.yml
+
+bak/
+*.bak
+
+public/uploads/
+public/u/
+config/mongoid.yml
+public/assets/
+public/apk/
+public/sitemap.xml*
+
+Gemfile.lock
+

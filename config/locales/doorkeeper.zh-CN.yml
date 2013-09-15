@@ -1,0 +1,69 @@
+zh-CN:
+  activerecord:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能包含片段.'
+              has_query_parameter: '不能包含查询参数.'
+              invalid_uri: '必须是一个正确的Uri.'
+              relative_uri: '必须是一个绝对的Uri.'
+  mongoid:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能包含片段.'
+              has_query_parameter: '不能包含查询参数.'
+              invalid_uri: '必须是一个正确的Uri.'
+              relative_uri: '必须是一个绝对的Uri.'
+  mongo_mapper:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能包含片段.'
+              has_query_parameter: '不能包含查询参数.'
+              invalid_uri: '必须是一个正确的Uri.'
+              relative_uri: '必须是一个绝对的Uri.'
+  doorkeeper:
+    errors:
+      messages:
+        # Common error messages
+        invalid_request: '请求缺少必要的参数，包括不支持的参数值，或存在其他异常.'
+        invalid_redirect_uri: 'URI重定向无效.'
+        unauthorized_client: '客户端没有被授权请求、执行使用此方法.'
+        access_denied: '资源所有者或授权服务器拒绝了这一要求.'
+        invalid_scope: '请求的范围是无效的，未知的，或格式不正确.'
+        server_error: '授权服务器遇到了意外情况，导致它未完成请求.'
+        temporarily_unavailable: '授权服务器目前无法处理请求,服务器暂时超载或维护.'
+
+        #configuration error messages
+        credential_flow_not_configured: '资源所有者密码认证流程失败的原因: Doorkeeper.configure.resource_owner_from_credentials 未配置.'
+        resource_owner_authenticator_not_configured: '资源所有者查找失败原因： Doorkeeper.configure.resource_owner_authenticator 未配置.'
+
+        # Access grant errors
+        unsupported_response_type: '授权服务器不支持此类型响应.'
+
+        # Access token errors
+        invalid_client: '客户端验证失败，原因为：未知客户端，无客户端身份验证，或不支持的身份验证方法.'
+        invalid_grant: '授权所提供的grant是无效的，过期，被撤销，不匹配的，或授权请求中使用的重定向URI由另一个客户端发出。'
+        unsupported_grant_type: '授权服务器不支持此类型授权.'
+
+        # Password Access token errors
+        #invalid_resource_owner: '所提供的资源所有者凭证是无效的，或无法找到资源所有者'
+        invalid_resource_owner: '帐号或密码错误'
+    flash:
+      applications:
+        create:
+          notice: '应用成功创建.'
+        destroy:
+          notice: '应用成功删除.'
+        update:
+          notice: '应用成功更新.'
+      authorized_applications:
+        destroy:
+          notice: '应用程序撤销.'

@@ -7,8 +7,9 @@ class Wine
   field :description, type: String
   field :min_price, type: Money
   field :current_price, type: Money
-  field :min_starting_price, type: Money
-  field :max_starting_price, type: Money
+  field :fit_price, type: Money
+  mount_uploader :image, ImageUploader
+
   has_many :wine_prices
   has_many :wine_monitors
   taggable_on :categories

@@ -1,0 +1,21 @@
+zh-CN:
+  simple_form:
+    "yes": '是'
+    "no": '否'
+    required:
+      text: '必填'
+      mark: '*'
+    error_notification:
+      default_message: "请查看以下错误:"
+    options:
+      userinfo:
+        gender:
+          'false': '男'
+          'true': '女'
+    placeholders:
+      activity:
+        type_list: 例如:桌游,鸡尾酒
+    hints:
+      group:
+        is_custom_code: 商品名称 + 自动编号
+        commodity_name: 2~64个字符

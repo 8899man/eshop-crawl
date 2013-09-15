@@ -1,40 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @wine.name %>
-</p>
-
-<p>
-  <b>Introduction:</b>
-  <%= @wine.introduction %>
-</p>
-
-<p>
-  <b>Description:</b>
+<h1><%= @wine.name %></h1>
+<div class="well">
   <%= @wine.description %>
-</p>
+</div>
 
-<p>
-  <b>Min price:</b>
-  <%= @wine.min_price %>
-</p>
+<h2>价格信息</h2>
 
-<p>
-  <b>Current price:</b>
-  <%= @wine.current_price %>
-</p>
-
-<p>
-  <b>Min starting price:</b>
-  <%= @wine.min_starting_price %>
-</p>
-
-<p>
-  <b>Max starting price:</b>
-  <%= @wine.max_starting_price %>
-</p>
-
-
-<%= link_to 'Edit', edit_wine_path(@wine) %> |
-<%= link_to 'Back', wines_path %>
+<%= content_tag :dl,class: 'dl-horizontal' do %>
+  <%= d @wine, :min_price %>
+  <%= d @wine, :current_price %>
+  <%= d @wine, :fix_price %>
+<% end -%>
