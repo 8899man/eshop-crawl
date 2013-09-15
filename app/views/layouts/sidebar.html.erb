@@ -1,0 +1,34 @@
+<%= render 'application/before_layout' %>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+
+      <%= render 'layouts/messages' %>
+
+      <div class="row-fluid">
+        <div class="span8">
+          <% unless controller_name == 'home' %>
+            <div class="breadcrumb">
+              <%= render_crumbs separator: ' > ' %>
+            </div>
+
+          <% end %>
+          <%= yield %>
+        </div>
+      </div>
+      <div class="span4">
+        <%= yield(:sidebar) %>
+      </div>
+    </div>
+  </div> <!--! end of .container -->
+  <div id="footer">
+    <div class="footer-container">
+      <ul class="inline">
+        <%#<li><a href="http://weibo.com/u/2865390333" target="_blank" rel="nofollow">新浪微博：@神马价</a></li>%>
+      </ul>
+      <p id="copyright">© 2013 DestinyD(destinyd_ror<%= image_tag 'at.gif' %>163.com)</p>
+    </div>
+  </div>
+</body>
+</html>
+

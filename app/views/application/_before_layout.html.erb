@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= display_meta_tags default_meta_tags %>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+<!--[if IE]>
+ <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <%= yield(:head) %>
+  </head>
+  <body>
+    <header id="header"><%= render partial: 'head' %></header>

@@ -1,35 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Wine Crawl" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Wine Crawl" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <%= render 'layouts/navigation' %>
+<%= render 'application/before_layout' %>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <% unless controller_name == 'home' %>
+        <div class="breadcrumb">
+          <%= render_crumbs separator: ' > ' %>
         </div>
-      </nav>
+
+      <% end %>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
     </div>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
-          </div>
-          <footer>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
-  </body>
+  </div>
+</div> <!--! end of .container -->
+<div id="footer">
+  <div class="footer-container">
+    <ul class="inline">
+      <%#<li><a href="http://weibo.com/u/2865390333" target="_blank" rel="nofollow">新浪微博：@神马价</a></li>%>
+    </ul>
+    <p id="copyright">© 2013 DestinyD(destinyd_ror<%= image_tag 'at.gif' %>163.com)</p>
+  </div>
+</div>
+</body>
 </html>
+

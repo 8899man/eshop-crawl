@@ -13,4 +13,8 @@ class Wine
   has_many :wine_prices
   has_many :wine_monitors
   taggable_on :categories
+
+  def to_s
+    self.name
+  end
 end

@@ -1,12 +1,15 @@
-<h1><%= @wine.name %></h1>
+<h1><%= title @wine.name %></h1>
 <div class="well">
   <%= @wine.description %>
 </div>
 
-<h2>价格信息</h2>
+<h3>价格信息</h3>
 
 <%= content_tag :dl,class: 'dl-horizontal' do %>
   <%= d @wine, :current_price %>
   <%= d @wine, :fit_price %>
   <%= d @wine, :min_price %>
 <% end -%>
+
+<h3>历史价格</h3>
+

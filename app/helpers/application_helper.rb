@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def default_meta_tags
+    {
+      site: "#{t("controller.#{controller_name}")} | #{t('site_title')}",
+      description: t('site_desc'),
+      keywords: t('site_keywords'), 
+      reverse: true,
+    }
+  end
 
   def d(model,attr)
     if model.respond_to? attr and !model.send(attr).blank?
