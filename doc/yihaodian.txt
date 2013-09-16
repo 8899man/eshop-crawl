@@ -1,0 +1,18 @@
+标题
+http://www.1mall.com/item/ajax/ajaxProdInstantInfo.do?productID=5108029&merchantID=6688&productCode=0051080296
+{"code":1,"data":{"insstantInfo":{"id":5108029,"cnName":"OUTBACK Absolut 绝对伏特加原味 40度 750ml","nameSubtitle":"纯净、简单、完美的白色烈酒","namePrefix":null}},"message":null}
+
+价格？
+http://busystock.i.1mall.com/restful/detail?mcsite=1&provinceId=21&pmId=6100555
+{"pmId":6100555,"productId":5108029,"merchantId":6688,"shoppingcount":0,"productType":0,"saleType":4,"canSale":1,"canShow":1,"currentPrice":85.0,"currentPriceType":1,"marketPrice":199.0,"yhdPrice":85.0,"promPrice":91.2,"userLimitNum":0,"totalLimitNum":0,"soldNum":0,"promoteType":0,"ruleType":-1,"mutexPromotion":0,"currentStockNum":98,"localStockNum":98,"shareStockNum":0,"ts":99,"tsf":1,"vs":0,"vsf":0,"supportVs":1,"remainTime":0,"currentTime":1379305202189}
+
+http://busystock.i.1mall.com/restful/detail?mcsite=1&provinceId=21&pmId=4904087
+{"pmId":4904087,"productId":4528838,"merchantId":3,"shoppingcount":0,"productType":0,"saleType":1,"canSale":1,"canShow":1,"currentPrice":58.0,"currentPriceType":2,"marketPrice":198.0,"yhdPrice":188.0,"promPrice":58.0,"userLimitNum":0,"totalLimitNum":0,"soldNum":0,"promoteType":1,"ruleType":0,"mutexPromotion":0,"currentStockNum":42,"localStockNum":42,"shareStockNum":0,"ts":44,"tsf":2,"vs":0,"vsf":0,"supportVs":0,"remainTime":1250645495,"currentTime":1379306153505}
+
+运费(无输入，根据IP判断)
+http://www.1mall.com/item/ajax/ajaxViewShopFareInfo.do?productID=5108029&merchantID=6688
+{"code":"到广西20元起(<a id=\"inshop_store_link\" target=\"_blank\" href=\"http://shop.1mall.com/merchantfront/accessAction.action?merchantId=6688&siteId=1&productId=5108029\" class=\"red\">Lotswine专营店</a> <font color=\"red\">满499元即可免运费</font>)"}
+
+促销？
+http://www.1mall.com/item/ajax/ajaxProductPromotion.do?productID=5108029&merchantID=6688&productMercantID=6100555
+{"value":"\t    <div id=\"promotion_gift\" class=\"sales_promotion_list\">\r\n\t        <div class=\"clearfix\">\r\n\t            <div class=\"sales_info\">\r\n\t                <a id=\"detailPromoInfo_zp\" promotionId=\"186013\"  target=\"_blank\"> \r\n\t                \t<span class=\"sales_promotion_i\">满赠<\/span>\r\n\t                \t<span>本店铺单笔满¥<b>500<\/b>，可赠以下商品<\/span>\r\n\t                <\/a>\r\n\t            <\/div>\r\n\t            <div class=\"sales_more\">\r\n\t                <a class=\"more_icon\" href=\"javascript:;\"><\/a>\r\n\t            <\/div>\r\n\t        <\/div>\r\n\t        <div class=\"sales_more_box plist\">\r\n\t            <ul class=\"sales_more_list clearfix\">\r\n\t\t\t                \t<li>\r\n\t\t\t\t                \t<a onclick=\"addTrackPositionToCookie('1', 'detail_promotion_gift_product')\" pa=\"0\" href=\"/product/13232362_6688\" target=\"_blank\" price=\"25\" ptitle=\"OUTBACK 随机一款美国进口饮料 355ml\">\r\n\t\t\t\t                \t\t<img src=\"http://d6.yihaodianimg.com/N01/M05/BE/6C/CgQCrVI1RhCATRScAADFIcgGMKI42500_40x40.jpg\"  height=\"40\" width=\"40\">\r\n\t\t\t\t                \t<\/a>\r\n\t\t\t\t                <\/li>\r\n\t            <\/ul>\r\n\t        <\/div>\r\n\t    <\/div>\r\n    <div style=\"display: none; top: 382.5px; left: 830.5px;\" class=\"sales_promotion_detail\">\r\n\t    <div class=\"boxline\">\r\n\t    \t<p class=\"sales_promotion_title\"><\/p>\r\n\t        <p class=\"sales_promotion_price\">¥<span><\/span><\/p>\r\n\t        <s><\/s>\r\n\t    <\/div>\r\n    <\/div>\r\n"}

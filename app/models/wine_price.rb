@@ -5,8 +5,10 @@ class WinePrice
   field :url, type: String, default: 'http://'
   field :current_price, type: Money
   field :tag_price, type: Money
+  field :shipping, type: Money
   field :started_at, type: DateTime
   field :finished_at, type: DateTime
+  field :event_string, type: String
   belongs_to :wine
   belongs_to :website
   taggable_on :event_types

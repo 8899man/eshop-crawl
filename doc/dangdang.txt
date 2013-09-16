@@ -1,0 +1,10 @@
+标题
+product.dangdang.com/1062785022.html
+<h1>1919 酒类直供 绝对伏特加（原味）700ml<span class="subtitle">绝对伏特加（原味）700ml</span><span class="red" id="dp_presell"></span></h1>
+
+价格
+<span id="salePriceTag">&yen;110.40</span></b></p>
+
+原价
+<p><span class="ws3">市 场 价：</span><i class="m_price" id="originalPriceTag">&yen;&nbsp;165.00</i>
+                                    <i class="gray">（为您节省<span id="economyTag">&yen;&nbsp;54.60</span>）</i>                            </p>

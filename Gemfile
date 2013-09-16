@@ -32,6 +32,7 @@ gem "typhoeus"
 gem 'meta-tags', :require => 'meta_tags'#,git: 'git://github.com/destinyd/meta-tags.git'
 gem "crummy", "~> 1.7.1"
 gem 'whenever', :require => false
+gem 'sanitize'
 
 group :development do
   gem 'better_errors'
