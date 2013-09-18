@@ -13,21 +13,21 @@ class WinePrice
   belongs_to :website
   taggable_on :event_types
 
-  scope :recent,desc(:created_at)
-  scope :cheapest,asc(:current_price)
+  scope :recent, desc(:created_at)
+  scope :cheapest, asc(:current_price)
 
   before_validation :last_not_same
   after_create :set_wine_price
 
   def last_not_same
-    last_price = self.wine.wine_prices.recent.first
+    last_price = self.wine.wine_prices.where(website: self.website).recent.first
     if last_price and self.same?(last_price)
       self.errors.add :current_price, :same
     end
   end
 
   def same?(wine_price)
-    [current_price,tag_price] == [wine_price.current_price, wine_price.tag_price]
+    [current_price, tag_price, website] == [wine_price.current_price, wine_price.tag_price, wine_price.website]
   end
 
   def set_wine_price

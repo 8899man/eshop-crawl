@@ -9,7 +9,7 @@ class JdCrawler < Crawler
     url = @url_format % wine_monitor.sn
     t = Typhoeus.get(price_url, followlocation: true)
     j = JSON.parse(t.body)[0]
-    ph = wine_monitor.wine.wine_prices.create current_price: j['p'], tag_price: j['m'], url: url
+    ph = wine_monitor.wine.wine_prices.create current_price: j['p'], tag_price: j['m'], url: url, website: wine_monitor.website
   end
 
 end
