@@ -20,3 +20,7 @@ http://jprice.360buy.com/pageadword/202567-1-1.html?callback=Promotions.set
 ##"promoId":"90273698" 满减ID？  "promoType":10,满减分类
 ##"adwordUrl":"http://sale.jd.com/act/R5jdwPIFb0U4GHo.html", 活动网址
  "skuExtInfo":"","infoList":[]});
+
+运费
+http://rms.shop.jd.com/json/pop/dcash.action?venderID=29617&areaID=1
+{"dcash":10.0,"dtype":1,"ordermin":55.0}
