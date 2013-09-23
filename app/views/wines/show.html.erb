@@ -9,7 +9,35 @@
   <%= d @wine, :current_price %>
   <%= d @wine, :fit_price %>
   <%= d @wine, :min_price %>
+  <dt>当前最便宜价格</dt>
+  <dd><%= link_to @cheapest.current_price, go_path(@cheapest) %></dd>
 <% end -%>
 
 <h3>历史价格</h3>
+<ul class="nav nav-tabs" id="wine_prices_history">
+  <% YAML.load(ENV['CRAWLS']).each_with_index do |crawl, index| %>
+    <li class="<%= 'active' if index == 0 %>"><a href="#<%= crawl %>" data-toggle="tab"><%= t('website.'+ crawl.downcase) %></a></li>
+  <% end -%>
+</ul>
 
+<div class="tab-content">
+  <% YAML.load(ENV['CRAWLS']).each_with_index do |crawl,index| %>
+    <div class="tab-pane <%= 'active' if index == 0 %>" id="<%= crawl %>">
+      <% @wine_monitor_groups[crawl].each do |wm| %>
+        <ul class="unstyled bb mb10">
+          <% wm.wine_prices.recent.each do |wp| %>
+            <li><%= link_to "#{wp.current_price}/#{wp.tag_price}", go_path(wp) %>(<%= '%1.1f' % (10 * wp.current_price.to_f / wp.tag_price.to_f) %>折)<div class="pull-right">(开始于<%= wp.started_at %><%= wp.finished_at ? ",截止于#{wp.finished_at}" : "至今" %>)</div></li>
+          <% end -%>
+
+        </ul>
+      <% end -%>
+    </div>
+  <% end -%>
+</div>
+
+<script type="text/javascript">
+  $('#wine_prices_history a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+</script>

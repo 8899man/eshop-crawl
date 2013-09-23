@@ -1,5 +1,5 @@
 //= require jquery
-//= require jquery.ui.all
+// require jquery.ui.all
 //= require active_admin/base
 //= require jquery-ui-timepicker-addon
 $(document).ready(function() {

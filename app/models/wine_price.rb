@@ -17,6 +17,7 @@ class WinePrice
 
   scope :recent, desc(:created_at)
   scope :cheapest, asc(:current_price)
+  scope :running, where(:finished_at => nil)
 
   before_validation :last_not_same, on: :create
   after_create :set_wine_price

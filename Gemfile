@@ -6,7 +6,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'jquery-rails'
+gem 'jquery-rails', "< 3.0.0"
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'
@@ -25,9 +25,10 @@ gem 'rack-raw-upload', '>= 1.1.0'
 gem "inherited_resources"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+#gem "activeadmin", github: "gregbell/active_admin"
 gem 'activeadmin-mongoid'
-gem 'jquery-ui-rails'
-gem 'jquery-ui-bootstrap-rails'
+#gem 'jquery-ui-rails'
+#gem 'jquery-ui-bootstrap-rails'
 gem "typhoeus"
 gem 'meta-tags', :require => 'meta_tags'#,git: 'git://github.com/destinyd/meta-tags.git'
 gem "crummy", "~> 1.7.1"
