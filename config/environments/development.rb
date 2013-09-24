@@ -28,4 +28,16 @@ WineCrawl::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => "587",
+    :domain => "gmail.com",
+    :authentication => "plain",
+    :user_name => "levichengood@gmail.com",
+    :password => "Cy123321",
+    :enable_starttls_auto => true
+  }
+
+  config.action_mailer.default_url_options = { :host => "localhost:3006" }
 end

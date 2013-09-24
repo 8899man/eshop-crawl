@@ -1,0 +1,8 @@
+<%= t('site_title') %>的用户您好！
+<p>    你关注的<%= link_to @wine,wine_url(@wine) %>现价为<%= @wine.current_price %>，低于建议入手价<%= @wine.fit_price %>，还不赶快入手？晚了就没了哦。</p>
+<p>    若您感觉建议入手价还是较高，<%= @wine %>历史最低价为<%= @wine.min_price %>，您也可以参考这个价格进行查看购买。</p>
+<p>    您也可以 <%= link_to '点击我',wine_url(@wine) %> 查看<%= @wine %>的历史价格，参考以便自行购买。</p>
+
+若您的邮箱不支持显示html，可以复制以下网址进行访问
+
+<%= wine_url(@wine) %>
