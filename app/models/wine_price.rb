@@ -2,7 +2,6 @@ class WinePrice
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::TaggableOn
-  field :url, type: String, default: 'http://'
   field :current_price, type: Money
   field :tag_price, type: Money
   field :shipping, type: Money
@@ -49,5 +48,9 @@ class WinePrice
 
   def finish
     update_attribute :finished_at, Time.now if finished_at.nil?
+  end
+
+  def url
+    wine_monitor.url
   end
 end
