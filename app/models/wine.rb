@@ -10,10 +10,10 @@ class Wine
   field :fit_price, type: Money
   mount_uploader :image, ImageUploader
 
-  has_many :wine_prices
-  #has_many :wine_monitors
   taggable_on :categories
   has_and_belongs_to_many :wine_monitors
+
+  validates :name, presence: true
 
   def to_s
     self.name

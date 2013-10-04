@@ -9,7 +9,7 @@ class WinePrice
   field :finished_at, type: DateTime
   field :event_string, type: String
   field :plus_string, type: String
-  belongs_to :wine
+
   belongs_to :website
   belongs_to :wine_monitor
   taggable_on :event_types
@@ -26,7 +26,7 @@ class WinePrice
   end
 
   def last_not_same
-    last_price = self.wine.wine_prices.where(website: self.website, wine_monitor: self.wine_monitor).recent.first
+    last_price = self.wine_monitor.wine_prices.recent.first
     if self.same?(last_price)
       self.errors.add :current_price, :same
     else
@@ -40,10 +40,10 @@ class WinePrice
   end
 
   def set_wine_price
-    if wine.min_price == 0 or current_price < wine.min_price
-      wine.update_attribute :min_price, current_price
+    if wine_monitor.min_price == 0 or current_price < wine_monitor.min_price
+      wine_monitor.update_attribute :min_price, current_price
     end
-    wine.update_attribute :current_price, current_price
+    wine_monitor.update_attribute :current_price, current_price
   end
 
   def finish

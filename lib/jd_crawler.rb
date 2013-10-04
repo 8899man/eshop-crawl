@@ -17,9 +17,12 @@ class JdCrawler < Crawler
         j = JSON.parse(t.body)[0]
         ty = Typhoeus.get(event_url, followlocation: true)
         m = @regx_event_json.match(ty.body)
-        ph = wine_monitor.wine_prices.create current_price: j['p'], tag_price: j['m'], url: url, website: wine_monitor.website, plus_string: m['event_string'], wine: wine_monitor.wine
+        if j['id'] and j['id'] == 'J_' + wine_monitor.sn and j['p'] == '-1'
+          wine_monitor.finish
+        else
+          ph = wine_monitor.wine_prices.create current_price: j['p'], tag_price: j['m'], url: url, website: wine_monitor.website, plus_string: m['event_string']
+        end
       rescue Exception => ex
-        debugger
         p 'JdCrawler error'
       end
     end

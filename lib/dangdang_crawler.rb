@@ -19,10 +19,8 @@ class DangdangCrawler < Crawler
           url: url,
           event_string: (e ? Sanitize.clean(e[:event_string]).gsub(/[ \r\n]/m, '') : nil),
           website: wine_monitor.website,
-          plus_string: (e ? e[:event_string] : nil), 
-          wine: wine_monitor.wine
+          plus_string: (e ? e[:event_string] : nil)
       rescue Exception => ex
-        debugger
         p 'DangdangCrawler error'
       end
     end

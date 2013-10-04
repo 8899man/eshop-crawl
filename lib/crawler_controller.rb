@@ -5,7 +5,7 @@ class CrawlerController
   end
 
   def get_all
-    @wine_monitors = WineMonitor.all
+    @wine_monitors = WineMonitor.running
     @wine_monitors.each do |wine_monitor|
       case wine_monitor.lib
       when 'Jd'
