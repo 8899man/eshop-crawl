@@ -18,6 +18,8 @@ class WineMonitor
   validates :wines, presence: true
 
   after_update :set_wine_price
+  after_create :get_description
+
   def set_wine_price
     wines.each do |wine|
       if wine.min_price == 0 or current_price < wine.min_price
@@ -33,5 +35,9 @@ class WineMonitor
 
   def finish
     update_attribute :finished_at, Time.now if finished_at.nil?
+  end
+
+  def get_description
+    (lib.capitalize + "Crawler").constantize.new.get_description(self)
   end
 end
