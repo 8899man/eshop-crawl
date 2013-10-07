@@ -21,6 +21,10 @@ class WineMonitor
   after_update :set_wine_price
   after_create :init_from_page
 
+  def to_s
+    name
+  end
+
   def set_wine_price
     wines.each do |wine|
       if wine.min_price == 0 or current_price < wine.min_price

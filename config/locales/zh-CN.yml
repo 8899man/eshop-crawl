@@ -324,6 +324,7 @@ zh-CN:
     mp_users: 微信绑定
     posts: 夜市秀
     articles: 文章
+    wine_monitors: '酒价信息'
   action:
     prices:
       new: 记账
