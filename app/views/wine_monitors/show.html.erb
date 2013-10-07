@@ -1,0 +1,35 @@
+<h1><%= title @wine_monitor.name %></h1>
+<% unless @wine_monitor.description.blank? %>
+  <div class="well">
+    <%= @wine_monitor.description.html_safe %>
+  </div>
+<% end -%>
+
+<h3>价格信息</h3>
+
+<%= content_tag :dl,class: 'dl-horizontal' do %>
+  <%= d @wine_monitor, :current_price %>
+  <%= d @wine_monitor, :fit_price %>
+  <%= d @wine_monitor, :min_price %>
+  <%#<dt>当前价格</dt>%>
+  <%#<dd>%>
+  <%#= @wine_monitor.current_price %>
+  <%#</dd>%>
+<% end -%>
+
+<% if @wine_monitor.wine_prices.any? %>
+  <h3>历史价格</h3>
+  <ul class="unstyled bb mb10">
+    <% @wine_monitor.wine_prices.recent.each do |wine_price| %>
+      <li><%= link_to "#{wine_price.current_price}/#{wine_price.tag_price}", go_path(wine_price) %>(<%= '%1.1f' % (10 * wine_price.current_price.to_f / wine_price.tag_price.to_f) %>折)<div class="pull-right">(开始于<%= wine_price.started_at %><%= wine_price.finished_at ? ",截止于#{wine_price.finished_at}" : "至今" %>)</div></li>
+    <% end -%>
+  </ul>
+  <div class="clearfix"></div>
+<% end -%>
+
+<script type="text/javascript">
+  $('#wine_prices_history a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+</script>

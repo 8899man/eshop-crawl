@@ -1,5 +1,6 @@
 WineCrawl::Application.routes.draw do
-  get '/go/:id' => 'wines#links',as: :go
+  get '/go/:lib/:id' => 'wine_monitors#links',as: :go
+  resources :wine_monitors, only: [:index, :show]
   resources :wines, only: [:index, :show]
   #resources :wine_price_histories
   devise_for :admin_users, ActiveAdmin::Devise.config

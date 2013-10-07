@@ -5,6 +5,7 @@ class WineMonitor
   field :sn, type: String
   field :min_price, type: Money
   field :current_price, type: Money
+  field :name, type: String
   field :description, type: String
   field :finished_at, type: DateTime
   belongs_to :website
@@ -18,7 +19,7 @@ class WineMonitor
   validates :wines, presence: true
 
   after_update :set_wine_price
-  after_create :get_description
+  after_create :init_from_page
 
   def set_wine_price
     wines.each do |wine|
@@ -37,7 +38,7 @@ class WineMonitor
     update_attribute :finished_at, Time.now if finished_at.nil?
   end
 
-  def get_description
-    (lib.capitalize + "Crawler").constantize.new.get_description(self)
+  def init_from_page
+    (lib.capitalize + "Crawler").constantize.new.init_from_page(self)
   end
 end

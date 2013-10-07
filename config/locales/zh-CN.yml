@@ -237,6 +237,8 @@ zh-CN:
     last_sign_in_ip: 上次登录IP
     status: 状态
     tag_list: Tag
+    min_price: 最低价格
+    current_price: 现价
 
 
   labels:

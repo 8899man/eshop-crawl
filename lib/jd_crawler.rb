@@ -4,7 +4,8 @@ class JdCrawler < Crawler
     @format_url = 'http://item.jd.com/%d.html'
     @format_event_url = 'http://jprice.360buy.com/pageadword/%d-1-1.html?callback=Promotions.set'
     @regx_event_json = /Promotions.set\((?<event_string>.*)\);/
-    @regx_description = [/(?<description><ul class="detail-list">.*?<\/ul>)/m , /<div class="detail-content">(?<description>.*?)<\/div>/m]
+    @regx_name = /<h1>(?<name>.*)<\/h1>/m
+    @regx_description = [/(?<description><ul class="detail-list">.*?<\/ul>)/m , /<div class="detail-content">(?<description>.*?)<\/div>\s+<\/div>\s+<div class="mc  hide" data-widget="tab-content" id="product-detail-2">/m]
   end
 
   def get(wine_monitor)
@@ -31,16 +32,18 @@ class JdCrawler < Crawler
     hydra.run
   end
 
-  def get_description(wine_monitor)
+  def init_from_page(wine_monitor)
     url = @format_url % wine_monitor.sn
     hydra = Typhoeus::Hydra.new
     request = Typhoeus::Request.new url, {timeout: 10000, followlocation: true}
     request.on_complete do |t|
       begin
         body = t.body.encode('utf-8','gbk')
+        name = @regx_name.match(body)[:name].strip
         matches = @regx_description.map{|r| r.match body}
         description = matches.map{|match| match[:description]}.join("\n<p class='wine_crawler_hr'></p>\n")
-        wine_monitor.update_attribute :description, description
+        description.gsub! /data-lazyload/,'src'
+        wine_monitor.update_attributes description: description, name: name
       rescue Exception => ex
         p 'JdCrawler error'
       end

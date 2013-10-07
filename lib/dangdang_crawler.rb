@@ -3,6 +3,7 @@ class DangdangCrawler < Crawler
     @format_url = 'http://product.dangdang.com/%d.html'
     @regx = /<span id="salePriceTag">&yen;(?<current_price>[0-9\.]+)<\/span>.*<i class="m_price" id="originalPriceTag">&yen;&nbsp;(?<tag_price>[0-9\.]+)<\/i>/m
     @regx_event = /<div class="event clearfix">(?<event_string>.*?)<a[^>]+>/m
+    @regx_name = /<h1>(?<name>.*?)<span/m
     @regx_description = [/<textarea style="height:0px;border-width:0px;">(?<description>.*?)<\/textarea>/m]
   end
 
@@ -29,18 +30,19 @@ class DangdangCrawler < Crawler
     hydra.run
   end
 
-  def get_description(wine_monitor)
+  def init_from_page(wine_monitor)
     url = @format_url % wine_monitor.sn
     hydra = Typhoeus::Hydra.new
     request = Typhoeus::Request.new url, {timeout: 10000, followlocation: true}
     request.on_complete do |t|
       begin
         body = t.body.encode('utf-8','gbk')
+        name = @regx_name.match(body)[:name].strip
         matches = @regx_description.map{|r| r.match body}
         description = matches.map{|match| match[:description]}.join("\n<p class='wine_crawler_hr'></p>\n")
-        wine_monitor.update_attribute :description, description
+        wine_monitor.update_attributes description: description, name: name
       rescue Exception => ex
-        p 'JdCrawler error'
+        p 'DangdangCrawler error'
       end
     end
     hydra.queue request

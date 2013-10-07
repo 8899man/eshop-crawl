@@ -1,0 +1,8 @@
+<h1>酒监视器列表</h1>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <%= render @wine_monitors %>
+  <div class="pull-right">
+    <%= paginate @wine_monitors %>
+  </div>
+</div>
+

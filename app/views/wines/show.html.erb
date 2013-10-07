@@ -6,34 +6,37 @@
 <h3>价格信息</h3>
 
 <%= content_tag :dl,class: 'dl-horizontal' do %>
-  <%= d @wine, :current_price %>
+  <%#= d @wine, :current_price %>
   <%= d @wine, :fit_price %>
   <%= d @wine, :min_price %>
   <dt>当前最便宜价格</dt>
-  <dd><%= link_to @cheapest.current_price, go_path(@cheapest) %></dd>
+  <dd><%= link_to @cheapest.current_price, go_path(@cheapest, lib: @cheapest.lib) %></dd>
 <% end -%>
 
-<h3>历史价格</h3>
-<ul class="nav nav-tabs" id="wine_prices_history">
-  <% YAML.load(ENV['CRAWLS']).each_with_index do |crawl, index| %>
-    <li class="<%= 'active' if index == 0 %>"><a href="#<%= crawl %>" data-toggle="tab"><%= t('website.'+ crawl.downcase) %></a></li>
-  <% end -%>
-</ul>
+<% unless @wine_monitor_groups.blank? %>
+  <h3>历史价格</h3>
+  <ul class="nav nav-tabs" id="wine_prices_history">
+    <% index = 0 %>
+    <% @wine_monitor_groups.each do |lib, wine_monitors| %>
+      <li class="<%= 'active' if index == 0 %>"><a href="#<%= lib %>" data-toggle="tab"><%= t('website.'+ lib.downcase) %></a></li>
+      <% index += 1 %>
+    <% end -%>
+  </ul>
 
-<div class="tab-content">
-  <% YAML.load(ENV['CRAWLS']).each_with_index do |crawl,index| %>
-    <div class="tab-pane <%= 'active' if index == 0 %>" id="<%= crawl %>">
-      <% @wine_monitor_groups[crawl].each do |wm| %>
-        <ul class="unstyled bb mb10">
-          <% wm.wine_prices.recent.each do |wp| %>
-            <li><%= link_to "#{wp.current_price}/#{wp.tag_price}", go_path(wp) %>(<%= '%1.1f' % (10 * wp.current_price.to_f / wp.tag_price.to_f) %>折)<div class="pull-right">(开始于<%= wp.started_at %><%= wp.finished_at ? ",截止于#{wp.finished_at}" : "至今" %>)</div></li>
-          <% end -%>
-
-        </ul>
-      <% end -%>
-    </div>
-  <% end -%>
-</div>
+  <% index = 0 %>
+  <div class="tab-content">
+    <% @wine_monitor_groups.each do |lib, wine_monitors| %>
+      <div class="tab-pane <%= 'active' if index == 0 %>" id="<%= lib %>">
+        <% wine_monitors.each do |wine_monitor| %>
+          <ul class="unstyled bb mb10">
+            <li><%= link_to "#{wine_monitor.current_price}", go_path(wine_monitor, lib: wine_monitor.lib) %><%=  "(已下架)" if wine_monitor.finished_at %><div class="pull-right"> <%= link_to '历史详情', wine_monitor %></div></li>
+          </ul>
+        <% end -%>
+      </div>
+      <% index += 1 %>
+    <% end -%>
+  </div>
+<% end -%>
 
 <script type="text/javascript">
   $('#wine_prices_history a').click(function (e) {
