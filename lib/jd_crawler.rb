@@ -22,7 +22,17 @@ class JdCrawler < Crawler
         if j['id'] and j['id'] == 'J_' + wine_monitor.sn and j['p'] == '-1'
           wine_monitor.finish
         else
-          ph = wine_monitor.wine_prices.create current_price: j['p'], tag_price: j['m'], website: wine_monitor.website, plus_string: m['event_string']
+          plus_string = m['event_string']
+          events = JSON.parse(plus_string)['promotionInfoList']
+          event_strings = []
+          unless events.blank?
+            events.each do |event|
+              event_strings.push "直降#{event['discount']}" if event['discount']
+              event_strings.push "满 #{event['discount']} 减 #{event['reward']}" if event['reward']
+              event_strings.push "赠 #{event['adwordCouponList'][0]['couponQouta']} 京卷" unless event['adwordCouponList'].blank?
+            end
+          end
+          ph = wine_monitor.wine_prices.create current_price: j['p'], tag_price: j['m'], website: wine_monitor.website, plus_string: plus_string, event_string: event_strings.join(',')
         end
       rescue Exception => ex
         p 'JdCrawler get error'

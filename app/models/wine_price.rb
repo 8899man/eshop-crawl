@@ -40,10 +40,11 @@ class WinePrice
   end
 
   def set_wine_price
-    if wine_monitor.min_price == 0 or current_price < wine_monitor.min_price
-      wine_monitor.update_attribute :min_price, current_price
+    attrs = {current_price: current_price}
+    if wine_monitor.min_price.nil? or wine_monitor.min_price == 0 or current_price < wine_monitor.min_price
+      attrs[:min_price] = current_price
     end
-    wine_monitor.update_attribute :current_price, current_price
+    wine_monitor.update_attributes attrs
   end
 
   def finish
