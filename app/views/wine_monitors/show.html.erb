@@ -1,4 +1,4 @@
-<h1><%= title @wine_monitor.name %></h1>
+<h1><%= title @wine_monitor.name.html_safe %></h1>
 <% unless @wine_monitor.description.blank? %>
   <div class="well">
     <%= @wine_monitor.description.html_safe %>
