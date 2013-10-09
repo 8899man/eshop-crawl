@@ -12,7 +12,11 @@ YAML.load(ENV['ROLES']).each do |role|
   Role.mongo_session['roles'].insert({ :name => role })
   puts 'role: ' << role
 end
-puts 'DEFAULT USERS'
-user = User.create! :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-puts 'user: ' << user.name
-user.add_role :admin
+#puts 'DEFAULT USERS'
+#user = User.create! :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+#puts 'user: ' << user.name
+#user.add_role :admin
+
+Website.where(name: '京东', url: 'http://www.jd.com').first_or_create.update_attributes( lib: 'Jd')
+Website.where(name: '当当', url: 'http://www.dangdang.com').first_or_create.update_attributes(lib: 'Dangdang')
+Website.where(name: '也买酒', url: 'http://www.yesmywine.com/').first_or_create.update_attributes(lib: 'Yesmywine')

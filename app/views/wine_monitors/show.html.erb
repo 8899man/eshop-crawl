@@ -1,7 +1,7 @@
-<h1><%= title @wine_monitor.name.html_safe %></h1>
+<h1><%= title @wine_monitor.name.try(:html_safe) %></h1>
 <% unless @wine_monitor.description.blank? %>
   <div class="well">
-    <%= @wine_monitor.description.html_safe %>
+    <%= @wine_monitor.description.try(:html_safe) %>
   </div>
 <% end -%>
 
