@@ -1,0 +1,48 @@
+<% if @user %>
+  <li>
+    <%= link_to @user, user_home_url(subdomain: ENV['USER_SUBDOMAIN']) %>
+  </li>
+  <li>
+    <%= link_to @user.got_chat_messages.nav.count, got_chat_messages_url(subdomain: ENV['USER_SUBDOMAIN']), title:'未读消息', id: 'unread_messages_count' %>
+  </li>
+  <li>
+    <%= link_to '退出', destroy_user_session_url(subdomain: ENV['USER_SUBDOMAIN']), :method=>'delete' %>
+  </li>
+  <% if @user.has_role?(:trader) and request.subdomains.first != "trader" %>
+    <li>
+      <%= link_to '切换到商家中心', trader_home_url(subdomain: ENV['TRADER_SUBDOMAIN']) %>
+    </li>
+  <% end %>
+<% else %>
+  <li class="dropdown">
+    <%= link_to new_user_session_url(subdomain: ENV['USER_SUBDOMAIN']), class: 'dropdown-toggle', :'data-toggle' => 'dropdown' do %>
+      登录<span class="caret"></span>
+    <% end -%>
+    <div id="dropdown-login" class="dropdown-menu" style="padding: 5px 10px 0px 10px;">
+      <%= form_for("user", :url => user_session_url(subdomain: ENV['USER_SUBDOMAIN'])) do |f| %>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.text_field :login, :placeholder => '邮箱/手机号码/用户名' %>
+            <%= f.password_field :password, :placeholder => '密码' %>
+            <%= f.check_box :remember_me %>记住我
+            <%= f.submit "登录", :class => "btn btn-primary pull-right" %>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <hr />
+        <%= link_to new_user_session_url(subdomain: ENV['USER_SUBDOMAIN']), id: 'login_more' do %>
+          使用微博、QQ、百度等帐号登录
+        <% end -%>
+      <% end %>
+    </div>
+  </li>
+  <li>
+    <%= link_to '注册', new_user_registration_url(subdomain: ENV['USER_SUBDOMAIN']) %>
+  </li>
+<% end %>
+<script type="text/javascript">
+  // Prevent closing the sign in form on click
+$('#dropdown-login').click(function(e) {
+  e.stopPropagation();
+});
+</script>
