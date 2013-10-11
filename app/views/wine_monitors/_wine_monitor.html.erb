@@ -3,6 +3,7 @@
     <%= link_to wine_monitor.name.try(:html_safe), wine_monitor,target: '_blank', title: wine_monitor.name.try(:html_safe) %>
     <p><b>现价</b>：<%= link_to wine_monitor.current_price, wine_monitor,target: '_blank', title: wine_monitor.name.try(:html_safe) %></p>
     <p><b>最低价</b>：<%= link_to wine_monitor.min_price, wine_monitor, target: '_blank', title: wine_monitor.name.try(:html_safe) %></p>
+    <%= pb wine_monitor, :norm %>
   </div>
   <div class="clearfix"></div>
 </div>

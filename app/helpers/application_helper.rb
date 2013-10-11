@@ -17,6 +17,20 @@ module ApplicationHelper
     end
   end
 
+  def pb(model,attr)
+    if model.respond_to? attr and !model.send(attr).blank?
+      tmp = '<p>'
+      tmp += content_tag(:b,model.class.human_attribute_name(attr))
+      tmp += '：'
+      tmp += model.send(attr)
+      tmp += '</p>'
+      tmp.html_safe
+    else
+      ''
+    end
+  end
+
+
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
