@@ -239,6 +239,7 @@ zh-CN:
     tag_list: Tag
     min_price: 最低价格
     current_price: 现价
+    norm: 规格
 
 
   labels:

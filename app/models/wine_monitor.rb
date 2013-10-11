@@ -8,6 +8,7 @@ class WineMonitor
   field :name, type: String
   field :en_name, type: String
   field :description, type: String
+  field :norm, type: String
   field :finished_at, type: DateTime
   belongs_to :website
   has_many :wine_prices
