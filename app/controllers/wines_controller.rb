@@ -14,7 +14,7 @@ class WinesController < InheritedResources::Base
   protected
   def collection
     add_crumb(I18n.t("controller.wines"), wines_path)
-    @wines ||= end_of_association_chain.page(params[:page])
+    @wines ||= end_of_association_chain.recent.page(params[:page])
   end
 
 end

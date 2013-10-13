@@ -22,8 +22,8 @@ module ApplicationHelper
       tmp = '<p>'
       tmp += content_tag(:b,model.class.human_attribute_name(attr))
       tmp += '：'
-      tmp += model.send(attr)
-      tmp += '</p>'
+      tmp += model.send(attr).to_s
+      tmp += ' ml</p>'
       tmp.html_safe
     else
       ''

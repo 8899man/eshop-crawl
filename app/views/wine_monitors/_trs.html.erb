@@ -1,0 +1,9 @@
+<% @wine_monitors.each do |wine_monitor| %>
+  <tr>
+    <td><%= link_to wine_monitor.name.try(:html_safe), wine_monitor,target: '_blank', title: wine_monitor.name.try(:html_safe) %></td>
+    <td><%= wine_monitor.norm %></td>
+    <td><%= wine_monitor.current_price %></td>
+    <td><%= wine_monitor.min_price %></td>
+    <td><%= wine_monitor.updated_at.cc_time %></td>
+  </tr>
+<% end -%>

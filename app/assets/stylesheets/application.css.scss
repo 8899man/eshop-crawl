@@ -58,3 +58,16 @@
 .mb10{
   margin-bottom: 10px;
 }
+
+.table-head{
+  background-color: #e5e5e5;
+  color: gray;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+}
+.table-head-line{
+  height: 32px;
+  line-height: 32px;
+  border-right: #ccc 1px solid;
+}

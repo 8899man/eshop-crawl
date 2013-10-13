@@ -1,20 +1,21 @@
 <h1><%= title @wine_monitor.name.try(:html_safe) %></h1>
-<% unless @wine_monitor.description.blank? %>
-  <div class="well">
-    <%= @wine_monitor.description.try(:html_safe) %>
-  </div>
-<% end -%>
-
 <h3>价格信息</h3>
 
 <%= content_tag :dl,class: 'dl-horizontal' do %>
   <%= d @wine_monitor, :current_price %>
   <%= d @wine_monitor, :fit_price %>
   <%= d @wine_monitor, :min_price %>
-  <%#<dt>当前价格</dt>%>
-  <%#<dd>%>
-  <%#= @wine_monitor.current_price %>
-  <%#</dd>%>
+  <dt>规格</dt>
+  <dd>
+  <%= @wine_monitor.norm %> ml
+  </dd>
+<% end -%>
+
+<% unless @wine_monitor.description.blank? %>
+  <h3>详细介绍</h3>
+  <div class="well">
+    <%= @wine_monitor.description.try(:html_safe) %>
+  </div>
 <% end -%>
 
 <% if @wine_monitor.wine_prices.any? %>
