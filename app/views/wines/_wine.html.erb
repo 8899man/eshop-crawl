@@ -4,11 +4,17 @@
       <%= upload_image_tag wine.image, wine.name, :list %>
     <% end %>
   </div>
-  <div class="pull-left list-detail"> <%=link_to wine.name.try(:block,150), wine,target: '_blank', title: wine.name %>
-    <br />
-    <p><b>现价</b>：<%= wine.current_price %></p>
-    <p><b>最低价</b>：<%= wine.min_price %></p>
-    <p><%= wine.introduction || wine.description.try(:block,150) %></p>
+  <div class="pull-left list-detail"><h4><%=link_to wine.name.try(:block,150), wine,target: '_blank', title: wine.name %></h4>
+    <dl class="dl-horizontal">
+      <%= d wine, :current_price %>
+      <%= d wine, :min_price %>
+      <%= d wine, :price_per_liter %>
+      <%= d wine, :min_price_per_liter %>
+      <% if wine.introduction || wine.description.try(:block,150) %>
+        <dt>简介</dt>
+        <dd><%= wine.introduction || wine.description.try(:block,150) %></dd>
+      <% end %>
+    </dl>
   </div>
   <div class="clearfix"></div>
 </div>

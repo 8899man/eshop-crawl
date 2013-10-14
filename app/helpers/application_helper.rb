@@ -17,13 +17,14 @@ module ApplicationHelper
     end
   end
 
-  def pb(model,attr)
+  def pb(model, attr, plus=nil)
     if model.respond_to? attr and !model.send(attr).blank?
       tmp = '<p>'
       tmp += content_tag(:b,model.class.human_attribute_name(attr))
       tmp += '：'
       tmp += model.send(attr).to_s
-      tmp += ' ml</p>'
+      tmp += ' ' + plus if plus
+      tmp += '</p>'
       tmp.html_safe
     else
       ''

@@ -240,6 +240,8 @@ zh-CN:
     min_price: 最低价格
     current_price: 现价
     norm: 规格
+    price_per_liter: 每升均价
+    min_price_per_liter: 最低每升均价
 
 
   labels:

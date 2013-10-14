@@ -28,10 +28,10 @@
     <% @wine_monitor_groups.each do |lib, wine_monitors| %>
       <div class="tab-pane <%= 'active' if index == 0 %>" id="<%= lib %>">
         <% wine_monitors.group_by(&:norm).each do |norm,norm_wine_monitors| %>
-          <h4><%= norm || '默认' %></h4>
+          <h4><%= norm ? norm.to_s + 'ml' : '默认规格' %></h4>
           <% norm_wine_monitors.each do |wine_monitor| %>
             <ul class="unstyled bb mb10">
-              <li><%= link_to "#{wine_monitor.current_price}", go_path(wine_monitor, lib: wine_monitor.lib) %><%=  "(已下架)" if wine_monitor.finished_at %><div class="pull-right"> <%= link_to '历史详情', wine_monitor %></div></li>
+              <li><%= link_to wine_monitor.name, go_path(wine_monitor, lib: wine_monitor.lib) %><%=  "(已下架)" if wine_monitor.finished_at %><div class="pull-right"><%= wine_monitor.current_price %>元&nbsp;<%= link_to '历史详情', wine_monitor %></div></li>
             </ul>
           <% end -%>
         <% end -%>
