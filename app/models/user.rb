@@ -7,7 +7,8 @@ class User
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :authentication_keys => [:login], :omniauth_providers => [:baidu]
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -47,6 +48,54 @@ class User
   index({ email: 1 }, { unique: true, background: true })
   field :name, :type => String
   validates_presence_of :name
+  field :phone, :type => String
+  validates :name, presence: true, length: 2..10, uniqueness: true
+  validates :phone, format: {with: /1[3458](\d{9})/}, uniqueness: true, if: :phone?#, presence: true
+  attr_accessor :login, :omniauth_session
   attr_accessible :role_ids, :as => :admin
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :login, :phone
+
+  has_many :authentications
+
+  def to_s
+    self.name.to_s
+  end
+
+  def self.find_for_database_authentication(conditions={})
+    self.where(email: conditions[:login]).limit(1).first ||
+      self.where(phone: conditions[:login]).limit(1).first ||
+      self.where(name: conditions[:login]).limit(1).first
+  end
+
+  def password_required?
+    super
+  end
+
+  def apply_omniauth(omniauth)
+    authentications.build(
+      provider: omniauth.provider, 
+      uid: omniauth.uid,
+      access_token: omniauth.credentials.token)
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if (omniauth = session['omniauth']) and session['omniauth'].info
+        user.omniauth_session = session
+        user.name = omniauth.info.name if params[:name].blank?
+      end
+    end
+  end
+
+  def add_authentication
+    if omniauth_session and (omniauth = omniauth_session['omniauth'])
+      authentications.create(
+        provider: omniauth.info.media_type,
+        uid: omniauth.info.media_uid,
+        uname: omniauth.info.name,
+        access_token: omniauth.credentials.token
+      )
+      omniauth_session.delete :omniauth
+    end
+  end
 end

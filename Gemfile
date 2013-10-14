@@ -35,6 +35,12 @@ gem "crummy", "~> 1.7.1"
 gem 'sanitize'
 gem 'rufus-scheduler'
 
+#omniauth
+gem 'omniauth'
+gem 'omniauth-oauth2', git: 'git://github.com/intridea/omniauth-oauth2.git'
+gem 'omniauth-baidu-social','>= 0.0.1',
+  git: 'git://github.com/destinyd/omniauth-baidu-social.git'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

@@ -5,11 +5,16 @@ WineCrawl::Application.routes.draw do
   #resources :wine_price_histories
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  authenticated :user do
-    root :to => 'home#index'
-  end
+  #authenticated :user do
+    #root :to => 'home#index'
+  #end
   root :to => "wines#index"
-  devise_for :users
-  resources :users
+
+  devise_for :users, controllers: {
+    omniauth_callbacks: :authentications,
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+
   ActiveAdmin.routes(self)
 end

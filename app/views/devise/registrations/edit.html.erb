@@ -1,14 +1,27 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2><%= title '修改资料' %></h2>
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors resource %>
-  <%= f.input :name, :autofocus => true %>
-  <%= f.input :email, :required => true %>
-  <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+  <%= f.input :password, :autocomplete => "off", :hint => "如果不想修改，请留空", :required => false %>
   <%= f.input :password_confirmation, :required => false %>
-  <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
-  <%= f.button :submit, 'Update', :class => 'btn-primary' %>
+  <%= f.input :current_password, :hint => "我们需要验证您当前密码，才能做修改。", :required => true %>
+  <%= f.button :submit, '修改', :class => 'btn-primary' %>
 <% end %>
-<h3>Cancel my account</h3>
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-<%= link_to "Back", :back %>
+<%#= render "cancel" %>
+<% @trader = current_user.trader %>
+<% unless @trader.try(:name) %>
+  <% @trader = current_user.build_trader %>
+  <h2>建立摊位</h2>
+  <%= simple_form_for(@trader) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= render "trader/traders/fields_for",f: f, trader: @trader %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+<% end -%>
+<%= link_to "返回", :back %>
