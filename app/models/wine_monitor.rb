@@ -53,7 +53,7 @@ class WineMonitor
   end
 
   def set_price_per_liter
-    if norm and norm > 0
+    if current_price and  norm and norm > 0
       tmp_price_per_liter = (current_price / norm.to_f * 1000).to_money
 
       update_attribute :price_per_liter, tmp_price_per_liter if tmp_price_per_liter != price_per_liter
