@@ -22,7 +22,7 @@ class WineMonitor
   scope :cheapest_per_liter, asc(:price_per_liter)
 
   #validates :wines, presence: true
-  validates :sn, presence: true, uniqueness: { scope: :lib }
+  validates :sn, presence: true, uniqueness: { :scope => :website }
 
   after_update :set_price_per_liter, :set_wine_price
   after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price
