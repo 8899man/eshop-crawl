@@ -11,7 +11,10 @@ ActiveAdmin.register WineMonitor do
 
   index do
     selectable_column
-    column :lib
+    column :lib, :sortable => true do |monitor|
+      link_to monitor.lib, admin_wine_monitor_path(monitor)
+    end
+
     column :name, :sortable => true do |monitor|
       link_to monitor.name, admin_wine_monitor_path(monitor)
     end
