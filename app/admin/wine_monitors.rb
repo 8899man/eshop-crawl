@@ -1,7 +1,6 @@
 ActiveAdmin.register WineMonitor do
-  scope :all, :default => true
+  scope :recent, :default => true
   scope :running
-  scope :recent
   scope :cheapest
 
   filter :name
@@ -30,6 +29,7 @@ ActiveAdmin.register WineMonitor do
     column :norm
     column :price_per_liter
     column :min_price_per_liter
+    column :created_at
     #actions
   end
 

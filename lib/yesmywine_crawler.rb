@@ -2,9 +2,10 @@
 class YesmywineCrawler
   def initialize(args={})
     @format_url = 'http://www.yesmywine.com/goods/%d.html'
-    @regx = /<b class="myPrice">&yen<em>(?<current_price>.*?)<\/em>.*<b class="ymPrice">&yen<em>(?<tag_price>.*?)<\/em>.*(?<plus_string><dl class="clearifx">.*?<\/dl>)/m
+    @regx = /(<b class="myPrice">&yen<em>(?<current_price>.*?)<\/em>.*)?<b class="ymPrice">&yen<em>(?<tag_price>.*?)<\/em>.*(?<plus_string><dl class="clearifx".*?<\/dl>)/m
     @regx_name = /【也买酒】(?<name>.*)_价格.*?<li><span class="en">(?<en_name>.*?)<\/span><\/li>/m
     @regx_description = [/<div class="xiangqing">(?<description>.*?)<\/div>/m , /<div class="proContent">(?<description>.*?)<\/div>[\s\n]+<!-- 用户评价  -->/m]
+    @regx_finish = /很抱歉，您查找的页面或商品没有找到！/m
   end
 
   def get(wine_monitor)
@@ -14,8 +15,9 @@ class YesmywineCrawler
     request.on_complete do |t|
       begin
         body = t.body.force_encoding('utf-8')
+        return wine_monitor.finish if @regx_finish.match(body)
         m = @regx.match body
-        ph = wine_monitor.wine_prices.create current_price: m[:current_price],
+        ph = wine_monitor.wine_prices.create current_price: m[:current_price] || m[:tag_price],
           tag_price: m[:tag_price],
           url: url,
           event_string: Sanitize.clean(m[:plus_string]).gsub(/[ \r\n]/m, ''),
@@ -36,6 +38,7 @@ class YesmywineCrawler
     request.on_complete do |t|
       begin
         body = t.body.force_encoding('utf-8')
+        wine_monitor.finish if @regx_finish.match(body)
         match_name = @regx_name.match(body)
         name = match_name[:name].strip.gsub(/[\t\n ]+/,'')
         en_name = match_name[:en_name].strip.gsub(/[\t\n ]+/,'')

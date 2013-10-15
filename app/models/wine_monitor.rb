@@ -24,7 +24,7 @@ class WineMonitor
   validates :wines, presence: true
 
   after_update :set_price_per_liter, :set_wine_price
-  after_create :set_price_per_liter, :set_lib,:init_from_page
+  after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price
 
   def to_s
     name
@@ -41,7 +41,7 @@ class WineMonitor
       end
 
       wine.update_attribute :current_price, wine.wine_monitors.cheapest.first.try(:current_price)
-    end
+    end if current_price
   end
 
   def url
@@ -53,13 +53,13 @@ class WineMonitor
   end
 
   def set_price_per_liter
-    if current_price and  norm and norm > 0
+    if norm and norm > 0
       tmp_price_per_liter = (current_price / norm.to_f * 1000).to_money
 
       update_attribute :price_per_liter, tmp_price_per_liter if tmp_price_per_liter != price_per_liter
       update_attribute :min_price_per_liter, tmp_price_per_liter if min_price_per_liter.nil? or tmp_price_per_liter < min_price_per_liter
       set_wine_price_per_liter
-    end
+    end if current_price
   end
 
   def set_wine_price_per_liter
@@ -68,7 +68,7 @@ class WineMonitor
         wine.update_attribute :min_price_per_liter, min_price_per_liter
       end
       wine.update_attribute :price_per_liter, wine.wine_monitors.cheapest_per_liter.first.try(:price_per_liter)
-    end
+    end if min_price_per_liter
   end
 
   def set_lib
@@ -77,5 +77,9 @@ class WineMonitor
 
   def init_from_page
     (lib.capitalize + "Crawler").constantize.new.init_from_page(self)
+  end
+
+  def get_price
+    (lib + "Crawler").constantize.new.get(self)
   end
 end
