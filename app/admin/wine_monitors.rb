@@ -14,6 +14,8 @@ ActiveAdmin.register WineMonitor do
       link_to monitor.lib, admin_wine_monitor_path(monitor)
     end
 
+    column :sn
+
     column :name, :sortable => true do |monitor|
       link_to monitor.name, admin_wine_monitor_path(monitor)
     end
