@@ -1,0 +1,3 @@
+$('#no_comment').remove();
+$('<%= j render 'comments/hide', comment: @comment %>').prependTo('ul#comments').fadeIn('slow');
+$('#comment_content').val('');

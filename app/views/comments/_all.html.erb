@@ -1,0 +1,7 @@
+<% comments = parent.comments.recent.page(params[:comment_page]) %>
+<h3>我也来说两句</h3>
+<div><%= render "comments/form", parent: parent, comment: parent.comments.new, any_comments: comments.any? %></div>
+<h3>评论</h3>
+<div id="div_comments">
+  <%= render 'comments/comments', comments: comments, parent: parent %>
+</div>

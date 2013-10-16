@@ -41,6 +41,8 @@
   </div>
 <% end -%>
 
+<%= render "comments/all", parent: @wine %>
+
 <script type="text/javascript">
   $('#wine_prices_history a').click(function (e) {
     e.preventDefault();

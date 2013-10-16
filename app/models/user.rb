@@ -56,6 +56,7 @@ class User
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :login, :phone
 
   has_many :authentications
+  has_many :comments
 
   def to_s
     self.name.to_s

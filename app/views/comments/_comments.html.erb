@@ -1,0 +1,17 @@
+<ul class="unstyled ul-comments" id="comments">
+  <%= render comments %>
+</ul>
+<div class="clearfix"></div>
+<div class="pull-right">
+  <% if parent %>
+    <%= paginate comments,param_name: :cpage, :params => {controller: :comments, action: :index, :"#{parent.class.name.downcase}_id" => parent.id, id: nil}, remote: true %>
+  <% else %>
+    <%= paginate comments,param_name: :cpage %>
+  <% end %>
+</div>
+<div class="clearfix"></div>
+<% unless comments.any? %>
+  <div id="no_comment">
+    暂时还没评论，还不快来抢沙发。
+  </div>
+<% end %>

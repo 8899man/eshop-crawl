@@ -14,6 +14,7 @@ class Wine
 
   taggable_on :categories
   has_and_belongs_to_many :wine_monitors
+  has_many :comments, as: :commentable
 
   validates :name, presence: true
 

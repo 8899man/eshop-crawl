@@ -1,0 +1,12 @@
+<div class="wall_post row-fluid">
+  <% if current_user %>
+    <%= simple_form_for([parent,comment], remote: true) do |f| %>
+      <%= f.input_field :content, as: :text, rows: 6, cols: 60, maxlength: 300, class: 'row-fluid' %>
+
+      <%= f.button :submit, '发表评论', class: 'btn-primary ml10' %>
+    <% end %>
+
+  <% else %>
+    <%= render "application/login" %>
+  <% end %>
+</div>

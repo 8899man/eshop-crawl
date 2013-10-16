@@ -15,8 +15,9 @@ class WineMonitor
   belongs_to :website
   has_many :wine_prices
   has_and_belongs_to_many :wines
+  has_many :comments, as: :commentable
 
-  scope :recent, desc(:created_at)
+  scope :recent, desc(:updated_at)
   scope :cheapest, asc(:current_price)
   scope :running, where(:finished_at => nil)
   scope :cheapest_per_liter, asc(:price_per_liter)
