@@ -57,6 +57,7 @@ class User
 
   has_many :authentications
   has_many :comments
+  has_many :wine_monitors
 
   def to_s
     self.name.to_s

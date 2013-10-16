@@ -13,6 +13,7 @@ class WineMonitor
   field :norm, type: Integer
   field :finished_at, type: DateTime
   belongs_to :website
+  belongs_to :user
   has_many :wine_prices
   has_and_belongs_to_many :wines
   has_many :comments, as: :commentable

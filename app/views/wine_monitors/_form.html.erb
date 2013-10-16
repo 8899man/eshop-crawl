@@ -1,0 +1,13 @@
+<%= simple_form_for(@wine_monitor) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :website, collection: Website.all, include_blank: nil %>
+    <%= f.input :sn, hint: '如京东在商品介绍中：“商品编号：1028917089”' %>
+    <%= f.input :norm, hint: '输入正确的规格（即多少ML，只填写数字），可以更好的反馈均价信息给您。' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

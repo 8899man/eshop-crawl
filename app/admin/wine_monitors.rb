@@ -41,7 +41,7 @@ ActiveAdmin.register WineMonitor do
       f.input :name, html: {disabled: true}
       f.input :sn
       f.input :norm
-      f.input :wines, collection: Wine.all, include_blank: nil
+      f.input :wines, collection: Wine.all
       f.input :website, collection: Website.all, include_blank: nil
     end
     f.actions
