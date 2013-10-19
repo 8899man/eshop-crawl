@@ -48,7 +48,7 @@ class WinePrice
   end
 
   def set_event_string
-    wine_monitor.update_attribute :event_string, event_string
+    wine_monitor.update_attribute :event_string, event_string if wine_monitor
   end
 
   def finish
