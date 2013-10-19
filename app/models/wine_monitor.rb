@@ -12,6 +12,7 @@ class WineMonitor
   field :description, type: String
   field :norm, type: Integer
   field :finished_at, type: DateTime
+  field :event_string, type: String
   belongs_to :website
   belongs_to :user
   has_many :wine_prices
@@ -43,7 +44,8 @@ class WineMonitor
         wine.update_attribute :min_price, current_price
       end
 
-      wine.update_attribute :current_price, wine.wine_monitors.cheapest.first.try(:current_price)
+      the_cheapest = wine.wine_monitors.cheapest.first
+      wine.update_attributes current_price: the_cheapest.try(:current_price), event_string: the_cheapest.try(:event_string)
     end if current_price
   end
 
