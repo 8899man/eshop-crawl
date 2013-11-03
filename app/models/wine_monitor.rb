@@ -90,4 +90,12 @@ class WineMonitor
   def get_price
     (lib + "Crawler").constantize.new.get(self)
   end
+
+  def self.categories
+    all.map(&:categories).flatten.uniq
+  end
+
+  def self.category(category_name)
+    WineMonitor.tagged_with_on(:categories, category_name)
+  end
 end

@@ -15,6 +15,19 @@ class WineMonitorsController < InheritedResources::Base
     redirect_to @wine_monitor.url
   end
 
+  def categories
+    @categories = WineMonitor.categories
+  end
+
+  def category
+    @category = params[:id]
+    @wine_monitors = WineMonitor.category(params[:id]).page(params[:page])
+    add_crumb(I18n.t("controller.wine_monitors"), wine_monitors_path)
+    add_crumb('分类', categories_wine_monitors_path)
+    add_crumb(@category, category_wine_monitors_path(@category))
+    render :index
+  end
+
   protected
   def begin_of_association_chain
     current_user

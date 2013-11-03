@@ -1,0 +1,12 @@
+<% if @class %>
+  <ul class="nav nav-pills">
+    <%= content_tag 'li', class: (@category.nil? ? 'active' : '') do -%>
+      <%= link_to '全部', wine_monitors_path %>
+    <% end -%>
+    <% @class.categories.each do |category| %>
+      <%= content_tag 'li', class: (category == @category ? 'active' : '') do -%>
+        <%= link_to category, category_wine_monitors_path(category) %>
+      <% end -%>
+    <% end -%>
+  </ul>
+<% end -%>
