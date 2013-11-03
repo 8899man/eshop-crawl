@@ -28,8 +28,9 @@ class JdCrawler < Crawler
           unless events.blank?
             events.each do |event|
               event_strings.push "直降#{event['discount']}" if event['discount']
-              event_strings.push "满 #{event['discount']} 减 #{event['reward']}" if event['reward']
+              event_strings.push "满 #{event['needMondey']} 减 #{event['reward']}" if event['reward'].to_f != 0.0
               event_strings.push "赠 #{event['adwordCouponList'][0]['couponQouta']} 京卷" unless event['adwordCouponList'].blank?
+              event_strings.push "满 #{event['needMondey']} 加 #{event['addMoney']} 赠 <a href='#{event['adwordUrl']}'>赠品</a>" if event['addMoney'].to_f != 0.0
             end
           end
           ph = wine_monitor.wine_prices.create current_price: j['p'], tag_price: j['m'], website: wine_monitor.website, plus_string: plus_string, event_string: event_strings.join(',')
