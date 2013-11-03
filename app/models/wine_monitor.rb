@@ -1,6 +1,7 @@
 class WineMonitor
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::TaggableOn
   field :lib, type: String
   field :sn, type: String
   field :min_price, type: Money
@@ -15,6 +16,8 @@ class WineMonitor
   field :event_string, type: String
   belongs_to :website
   belongs_to :user
+
+  taggable_on :categories
   has_many :wine_prices
   has_and_belongs_to_many :wines
   has_many :comments, as: :commentable
