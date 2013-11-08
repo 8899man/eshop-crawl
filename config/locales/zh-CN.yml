@@ -197,6 +197,7 @@ zh-CN:
       wine_price: 酒价
       wine_monitor: 酒价监视器
       website: 网站
+      user_monitor: 监视器
     attributes:
       wine:
         min_price: 历史最低价
@@ -205,6 +206,8 @@ zh-CN:
       wine_monitor:
         sn: 商品编号
         wines: 所属美酒
+      user_monitor:
+        warn_price: 提醒价格（小于等于时提醒）
 
   attributes:
     created_at: 创建于

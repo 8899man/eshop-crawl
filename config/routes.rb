@@ -1,6 +1,7 @@
 WineCrawl::Application.routes.draw do
+  resources :user_monitors
   resources :comments, only: [:index, :show, :create]
-  get '/go/:lib/:id' => 'wine_monitors#links',as: :go
+  match '/go/:lib/:id' => 'wine_monitors#links',as: :go
   resources :wine_monitors, only: [:index, :show, :new, :create] do
     resources :comments, only: [:index,:create]
     get 'category/:id' => 'wine_monitors#category', on: :collection, as: 'category'

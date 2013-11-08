@@ -1,0 +1,19 @@
+<%= simple_form_for @user_monitor, remote: true do |f| %>
+  <%= f.error_notification %>
+  <p> 
+    <b>酒名：</b>
+    <%= @user_monitor.wine_monitor %>
+  </p>
+  <% @user_monitors_count = current_user.user_monitors.where(wine_monitor: @user_monitor.wine_monitor).count %>
+  <% if @user_monitors_count > 0 %>
+    <p class="text-warning"> 此酒你已经创建了<%= @user_monitors_count %>个监视器，若不需要，请关闭对话框。 </p>
+  <% end -%>
+    
+  <div class="form-inputs">
+    <%= f.input :warn_price %>
+    <%= f.input :wine_monitor_id, input_html:{ value: @user_monitor.wine_monitor.id}, as: :hidden %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end -%>

@@ -9,6 +9,15 @@
   <dd>
   <%= @wine_monitor.norm %> ml
   </dd>
+  <dt>&nbsp;</dt>
+  <dd>
+    <%= button_to '访问', go_path(@wine_monitor), class: 'btn btn-primary' %>
+    <% if current_user %>
+      <%= button_to '设置监视器', new_user_monitor_path(wine_monitor_id: @wine_monitor), method: :get, remote: true, class: 'btn btn-primary' %>
+    <% else %>
+      <%= render "application/login", warn: '监视酒价、设置邮件提醒' %>
+    <% end %>
+  </dd>
 <% end -%>
 
 <% unless @wine_monitor.description.blank? %>

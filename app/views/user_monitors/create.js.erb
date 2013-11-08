@@ -1,0 +1,7 @@
+$('#myModal').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+$('#myModal').remove();
+<% unless @user_monitor.valid? %>
+  alert('你已经创建过同样价格的监视器');
+<% end -%>

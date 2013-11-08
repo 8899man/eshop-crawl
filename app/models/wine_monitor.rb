@@ -21,6 +21,7 @@ class WineMonitor
   has_many :wine_prices
   has_and_belongs_to_many :wines
   has_many :comments, as: :commentable
+  has_many :user_monitors
 
   scope :recent, desc(:updated_at)
   scope :cheapest, asc(:current_price)
