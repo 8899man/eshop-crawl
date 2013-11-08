@@ -2,13 +2,15 @@
 <h3>价格信息</h3>
 
 <%= content_tag :dl,class: 'dl-horizontal' do %>
-  <%= d @wine_monitor, :current_price %>
-  <%= d @wine_monitor, :fit_price %>
-  <%= d @wine_monitor, :min_price %>
-  <dt>规格</dt>
-  <dd>
-  <%= @wine_monitor.norm %> ml
-  </dd>
+  <%= d @wine_monitor, :current_price, ' 元' %>
+  <%= d @wine_monitor, :fit_price, ' 元' %>
+  <%= d @wine_monitor, :min_price, ' 元' %>
+  <% if @wine_monitor.norm and @wine_monitor.norm > 0 %>
+    <%= d @wine_monitor, :norm, ' mL' %>
+    <%= d @wine_monitor, :price_per_liter, ' 元/L' %>
+    <%= d @wine_monitor, :min_price_per_liter, ' 元/L' %>
+  <% end -%>
+  <%= d @wine_monitor, :event_string %>
   <dt>分类</dt>
   <dd>
   <ul class="inline">

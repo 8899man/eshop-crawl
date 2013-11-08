@@ -206,6 +206,7 @@ zh-CN:
       wine_monitor:
         sn: 商品编号
         wines: 所属美酒
+        event_string: 促销活动
       user_monitor:
         warn_price: 提醒价格（小于等于时提醒）
 

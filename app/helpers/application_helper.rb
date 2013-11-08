@@ -8,10 +8,10 @@ module ApplicationHelper
     }
   end
 
-  def d(model,attr)
+  def d(model,attr, plus ='')
     if model.respond_to? attr and !model.send(attr).blank?
       tmp = content_tag(:dt,model.class.human_attribute_name(attr))
-      tmp += content_tag(:dd,model.send(attr))
+      tmp += content_tag(:dd,model.send(attr).to_s + plus)
     else
       ''
     end
