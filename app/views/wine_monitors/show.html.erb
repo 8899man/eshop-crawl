@@ -9,6 +9,14 @@
   <dd>
   <%= @wine_monitor.norm %> ml
   </dd>
+  <dt>分类</dt>
+  <dd>
+  <ul class="inline">
+    <% @wine_monitor.categories.each do |category| %>
+      <li><%= link_to category, category_wine_monitors_path(category) %></li>
+    <% end -%>
+  </ul>
+  </dd>
   <dt>&nbsp;</dt>
   <dd>
     <%= button_to '访问', go_path(@wine_monitor), class: 'btn btn-primary' %>
