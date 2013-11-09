@@ -40,6 +40,7 @@ gem 'omniauth'
 gem 'omniauth-oauth2', git: 'git://github.com/intridea/omniauth-oauth2.git'
 gem 'omniauth-baidu-social','>= 0.0.1',
   git: 'git://github.com/destinyd/omniauth-baidu-social.git'
+gem 'sorted-mongoid'
 
 group :development do
   gem 'better_errors'

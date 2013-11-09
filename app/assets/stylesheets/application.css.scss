@@ -11,11 +11,13 @@
  *= require_self
  * require_tree .
  *= require 'bootstrap_and_overrides'
+ *= require 'bootstrap-sortable'
  *= require 'devise'
  *= require 'home'
  *= require 'list'
  *= require 'jquery-ui-timepicker-addon'
  *= require 'ui.totop'
+ *= require 'wine_monitors'
 */
 
 .content {

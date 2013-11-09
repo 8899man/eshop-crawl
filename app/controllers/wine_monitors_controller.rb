@@ -21,7 +21,11 @@ class WineMonitorsController < InheritedResources::Base
 
   def category
     @category = params[:id]
-    @wine_monitors = WineMonitor.category(params[:id]).page(params[:page])
+    unless params[:sort].blank?
+      @wine_monitors ||= WineMonitor.category(params[:id]).sorted(params[:sort] || '').page(params[:page])
+    else
+      @wine_monitors ||= WineMonitor.category(params[:id]).recent.page(params[:page])
+    end
     add_crumb(I18n.t("controller.wine_monitors"), wine_monitors_path)
     add_crumb('分类', categories_wine_monitors_path)
     add_crumb(@category, category_wine_monitors_path(@category))
@@ -31,7 +35,11 @@ class WineMonitorsController < InheritedResources::Base
   protected
   def collection
     add_crumb(I18n.t("controller.wine_monitors"), wine_monitors_path)
-    @wine_monitors ||= end_of_association_chain.recent.page(params[:page])
+    unless params[:sort].blank?
+      @wine_monitors ||= end_of_association_chain.sorted(params[:sort] || '').page(params[:page])
+    else
+      @wine_monitors ||= end_of_association_chain.recent.page(params[:page])
+    end
   end
 
 end
