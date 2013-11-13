@@ -17,7 +17,7 @@ WineCrawl::Application.routes.draw do
   #authenticated :user do
     #root :to => 'home#index'
   #end
-  root :to => "wines#index"
+  root :to => "wine_monitors#index"
 
   devise_for :users, controllers: {
     omniauth_callbacks: :authentications,
