@@ -19,7 +19,7 @@ class WinePrice
   scope :running, where(:finished_at => nil)
 
   before_validation :last_not_same, on: :create
-  after_create :set_wine_price, :set_event_string
+  after_create :set_wine
 
   def sn
     wine_monitor.try(:sn)
@@ -39,16 +39,12 @@ class WinePrice
     [current_price, tag_price, website, event_string] == [wine_price.current_price, wine_price.tag_price, wine_price.website, wine_price.event_string]
   end
 
-  def set_wine_price
-    attrs = {current_price: current_price}
+  def set_wine
+    attrs = {current_price: current_price, event_string: event_string}
     if wine_monitor.min_price.nil? or wine_monitor.min_price == 0 or current_price < wine_monitor.min_price
       attrs[:min_price] = current_price
     end
     wine_monitor.update_attributes attrs
-  end
-
-  def set_event_string
-    wine_monitor.update_attribute :event_string, event_string if wine_monitor
   end
 
   def finish
