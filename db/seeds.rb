@@ -17,6 +17,7 @@
 #puts 'user: ' << user.name
 #user.add_role :admin
 
-Website.where(name: '京东', url: 'http://www.jd.com').first_or_create.update_attributes( lib: 'Jd')
-Website.where(name: '当当', url: 'http://www.dangdang.com').first_or_create.update_attributes(lib: 'Dangdang')
-Website.where(name: '也买酒', url: 'http://www.yesmywine.com/').first_or_create.update_attributes(lib: 'Yesmywine')
+Website.where(name: '京东', url: 'http://www.jd.com', lib: 'Jd').first_or_create
+Website.where(name: '当当', url: 'http://www.dangdang.com', lib: 'Dangdang').first_or_create
+Website.where(name: '也买酒', url: 'http://www.yesmywine.com/', lib: 'Yesmywine').first_or_create
+Website.where(name: '也买酒商城', url: 'http://mall.yesmywine.com/', lib: 'YesmywineMall').first_or_create

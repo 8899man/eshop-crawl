@@ -92,7 +92,7 @@ class WineMonitor
   end
 
   def init_from_page
-    (lib.capitalize + "Crawler").constantize.new.init_from_page(self)
+    (lib + "Crawler").constantize.new.init_from_page(self)
   end
 
   def get_price
