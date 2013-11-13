@@ -1,0 +1,13 @@
+<h1><%= title t("action.#{controller_name}.#{action_name}") %></h1>
+<ul class="nav nav-tabs">
+  <li class="active">
+    <%= link_to '简单模式', '#' %>
+  </li>
+  <li>
+    <%= link_to '专家模式', new_wine_monitor_path %>
+  </li>
+</ul>
+
+<%= render 'form' %>
+
+<%= render "application/login", warn: '设置邮件提醒' %>

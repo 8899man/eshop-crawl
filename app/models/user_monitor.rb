@@ -7,5 +7,5 @@ class UserMonitor
 
   scope :recent, desc(:updated_at)
 
-  validates :warn_price, presence: true, uniqueness: { :scope => [:user_monitor, :wine_monitor] }
+  validates :warn_price, presence: true, uniqueness: { :scope => :wine_monitor }
 end

@@ -59,6 +59,7 @@ class User
   has_many :comments
   has_many :wine_monitors
   has_many :user_monitors
+  has_many :wine_links
 
   def to_s
     self.name.to_s

@@ -1,0 +1,23 @@
+<h1>Listing wine_links</h1>
+
+<table>
+  <tr>
+    <th>Url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @wine_links.each do |wine_link| %>
+  <tr>
+    <td><%= wine_link.url %></td>
+    <td><%= link_to 'Show', wine_link %></td>
+    <td><%= link_to 'Edit', edit_wine_link_path(wine_link) %></td>
+    <td><%= link_to 'Destroy', wine_link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Wine link', new_wine_link_path %>

@@ -22,6 +22,7 @@ class WineMonitor
   has_and_belongs_to_many :wines
   has_many :comments, as: :commentable
   has_many :user_monitors
+  has_many :wine_links
 
   scope :recent, desc(:updated_at)
   scope :cheapest, asc(:current_price)
@@ -87,7 +88,7 @@ class WineMonitor
   end
 
   def set_lib
-    update_attribute :lib, website.lib
+    update_attribute :lib, website.lib if website
   end
 
   def init_from_page

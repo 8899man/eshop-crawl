@@ -1,4 +1,11 @@
 WineCrawl::Application.routes.draw do
+  authenticated :user do
+    root :to => 'wine_monitors#index'
+    scope module: 'user' do
+      resources :wine_links
+    end
+  end
+  resources :wine_links
   resources :user_monitors
   resources :comments, only: [:index, :show, :create]
   get '/go/:lib/:id' => 'wine_monitors#links',as: :go
@@ -14,9 +21,6 @@ WineCrawl::Application.routes.draw do
   #resources :wine_price_histories
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  #authenticated :user do
-    #root :to => 'home#index'
-  #end
   root :to => "wine_monitors#index"
 
   devise_for :users, controllers: {

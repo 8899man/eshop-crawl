@@ -198,6 +198,7 @@ zh-CN:
       wine_monitor: 酒价监视器
       website: 网站
       user_monitor: 监视器
+      wine_link: 酒网址
     attributes:
       wine:
         min_price: 历史最低价
@@ -207,8 +208,8 @@ zh-CN:
         sn: 商品编号
         wines: 所属美酒
         event_string: 促销活动
-      user_monitor:
-        warn_price: 提醒价格（小于等于时提醒）
+      wine_link:
+        url: 售酒网址
 
   attributes:
     created_at: 创建于
@@ -250,6 +251,7 @@ zh-CN:
     price_per_liter: 每升均价
     min_price_per_liter: 最低每升均价
     website: 网站
+    warn_price: 提醒价格（小于等于时提醒）
 
 
   labels:
@@ -336,6 +338,7 @@ zh-CN:
     posts: 夜市秀
     articles: 文章
     wine_monitors: '酒价信息'
+    wine_links: 酒价监视
   action:
     prices:
       new: 记账
@@ -386,6 +389,12 @@ zh-CN:
       category: 分类%{category}
     tags: 标签
     tag: "标签: %{tag}"
+    wine_links:
+      new: 酒价监视 简单模式
+      create: 酒价监视 简单模式
+    wine_monitors:
+      new: 酒价监视 专家模式
+      create: 酒价监视 专家模式
 
   will_paginate:
     previous_label: "&#8592; 上一页"

@@ -1,0 +1,12 @@
+<%= simple_form_for(@wine_link) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :url, hint: '如：http://item.jd.com/1017542988.html' %>
+    <%= f.input :warn_price, hint: '留空为不设置提醒' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
