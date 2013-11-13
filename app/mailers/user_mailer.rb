@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
     @user = user_monitor.user
     @user_monitor = user_monitor
     @wine_monitor = user_monitor.wine_monitor
-    mail to: user.email,
+    mail to: @user.email,
       :subject => "「酒比价监视器」#{@wine_monitor.name}当前价格已经低于您设置的监视价格，还不来看看？"
   end
 end
