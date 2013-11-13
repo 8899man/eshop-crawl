@@ -31,11 +31,17 @@ class WineMonitor
   #validates :wines, presence: true
   validates :sn, presence: true, uniqueness: { :scope => :website }
 
-  after_update :set_price_per_liter, :set_wine_price
+  after_update :set_price_per_liter, :set_wine_price, :monitoring_remind
   after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price
 
   def to_s
     name
+  end
+
+  def monitoring_remind
+    user_monitors.where(:warn_price.gte => current_price).each do |user_monitor|
+      UserMailer.user_monitor(user_monitor).deliver
+    end
   end
 
   def set_wine_price

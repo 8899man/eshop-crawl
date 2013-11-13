@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    您好 <%= @user.name %>：
+    <p>
+      <%= link_to @wine_monitor.name, wine_monitor_url(@wine_monitor) %> 降价至 <%= @wine_monitor.current_price %>，低于您设置的监视价格 <%= @user_monitor.warn_price %>，可以入手了，还不来看看？
+    </p>
+    <p>
+      <%= link_to "点击我查看", wine_monitor_url(@wine_monitor) %>
+    </p>
+    <p>
+      若不支持html请复制此网址直接使用浏览器访问：<br />
+    </p>
+    <p>
+      <%= wine_monitor_url(@wine_monitor) %>
+    </p>
+  </body>
+</html>

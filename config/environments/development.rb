@@ -30,12 +30,12 @@ WineCrawl::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => "587",
-    :domain => "gmail.com",
+    :address => "smtp.163.com",
+    :port => "25",
+    :domain => "163.com",
     :authentication => "plain",
-    :user_name => "levichengood@gmail.com",
-    :password => "Cy123321",
+    :user_name => "winecrawler@163.com",
+    :password => "jikD2#(jAkC",
     :enable_starttls_auto => true
   }
 
