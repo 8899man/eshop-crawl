@@ -15,7 +15,7 @@
   <dd>
   <ul class="inline">
     <% @wine_monitor.categories.each do |category| %>
-      <li><%= link_to category, category_wine_monitors_path(category) %></li>
+      <li><%= link_to category, category_wine_monitors_path(category), target: '_blank' %></li>
     <% end -%>
   </ul>
   </dd>

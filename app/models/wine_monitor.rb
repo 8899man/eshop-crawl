@@ -61,7 +61,7 @@ class WineMonitor
   end
 
   def url
-    @url ||= lib.capitalize.constantize.new(id: sn).url
+    @url ||= lib.constantize.new(id: sn).url
   end
 
   def finish
