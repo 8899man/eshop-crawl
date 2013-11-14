@@ -22,3 +22,4 @@ Website.where(name: '当当', url: 'http://www.dangdang.com', lib: 'Dangdang').f
 Website.where(name: '也买酒', url: 'http://www.yesmywine.com/', lib: 'Yesmywine').first_or_create
 Website.where(name: '也买酒商城', url: 'http://mall.yesmywine.com/', lib: 'YesmywineMall').first_or_create
 Website.where(name: '品尚红酒', url: 'http://www.wine9.com/', lib: 'Wine9').first_or_create
+Website.where(name: '亚马逊中国', url: 'http://www.amazon.com/?tag=liuzhouyeshi-23', lib: 'AmazonCn').first_or_create

@@ -21,12 +21,16 @@
   </dd>
   <dt>&nbsp;</dt>
   <dd>
-    <%= button_to '访问', go_path(id: @wine_monitor.sn, lib: @wine_monitor.lib), class: 'btn btn-primary', target: '_blank' %>
+  <p>
+    <%= link_to '访问', go_path(id: @wine_monitor.sn, lib: @wine_monitor.lib), class: 'btn btn-primary', target: '_blank', rel: 'external nofollow' %>
+  </p>
+  <p>
     <% if current_user %>
       <%= button_to '设置监视器', new_user_monitor_path(wine_monitor_id: @wine_monitor), method: :get, remote: true, class: 'btn btn-primary' %>
     <% else %>
       <%= render "application/login", warn: '监视酒价、设置邮件提醒' %>
     <% end %>
+  </p>
   </dd>
 <% end -%>
 
