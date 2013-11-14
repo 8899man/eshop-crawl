@@ -1,5 +1,5 @@
 # encoding: utf-8
-class Wine9Crawler
+class Wine9Crawler < Crawler
   def initialize(args={})
     @format_url = 'http://www.wine9.com/%d.html'
     @format_api_url = 'http://www.wine9.com/product.php?sku=%d&m=loadinfo&promcode=null'
@@ -40,13 +40,7 @@ class Wine9Crawler
         body = t.body.force_encoding('gb2312').encode('utf-8')
         match_name = @regx_name.match(body)
         name = match_name[:name].strip.gsub(/[\t\n]+/,'')
-        match_norm = @regx_norm.match(body)
-        if match_norm
-          norm = match_norm[:norm]
-          norm = norm.to_f * 1000 if !match_norm[:ml] and match_norm[:l]
-        else
-          norm = nil
-        end
+        norm = get_norm(body)
         matches = @regx_description.map{|r| r.match body}
         description = matches.map{|match| match[:description]}.join("\n<p class='wine_crawler_hr'></p>\n")
         wine_monitor.update_attributes description: description, name: name, norm: norm
