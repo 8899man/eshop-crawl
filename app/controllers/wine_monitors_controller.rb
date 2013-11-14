@@ -11,8 +11,9 @@ class WineMonitorsController < InheritedResources::Base
   end
 
   def links
-    @wine_monitor = WineMonitor.find(params[:id])
-    redirect_to @wine_monitor.url
+    if YAML.load(ENV['CRAWLS']).include?(params[:lib])
+      redirect_to params[:lib].constantize.new({id: params[:id]}).url
+    end
   end
 
   def categories

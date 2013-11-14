@@ -21,7 +21,7 @@
   </dd>
   <dt>&nbsp;</dt>
   <dd>
-    <%= button_to '访问', go_path(@wine_monitor), class: 'btn btn-primary' %>
+    <%= button_to '访问', go_path(id: @wine_monitor.sn, lib: @wine_monitor.lib), class: 'btn btn-primary', target: '_blank' %>
     <% if current_user %>
       <%= button_to '设置监视器', new_user_monitor_path(wine_monitor_id: @wine_monitor), method: :get, remote: true, class: 'btn btn-primary' %>
     <% else %>
@@ -41,7 +41,7 @@
   <h3>历史价格</h3>
   <ul class="unstyled bb mb10">
     <% @wine_monitor.wine_prices.recent.each do |wine_price| %>
-      <li><%= link_to "#{wine_price.current_price}/#{wine_price.tag_price}", go_path(wine_price) %>(<%= '%1.1f' % (10 * wine_price.current_price.to_f / wine_price.tag_price.to_f) %>折)<div class="pull-right">(开始于<%= wine_price.started_at %><%= wine_price.finished_at ? ",截止于#{wine_price.finished_at}" : "至今" %>)</div></li>
+      <li><%= link_to "#{wine_price.current_price}/#{wine_price.tag_price}", go_path(id: @wine_monitor.sn, lib: @wine_monitor.lib), target: '_blank', rel: 'external nofollow' %>(<%= '%1.1f' % (10 * wine_price.current_price.to_f / wine_price.tag_price.to_f) %>折)<div class="pull-right">(开始于<%= wine_price.started_at %><%= wine_price.finished_at ? ",截止于#{wine_price.finished_at}" : "至今" %>)</div></li>
     <% end -%>
   </ul>
   <div class="clearfix"></div>

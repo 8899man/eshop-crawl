@@ -9,8 +9,10 @@
   <%#= d @wine, :current_price %>
   <%= d @wine, :fit_price %>
   <%= d @wine, :min_price %>
+  <% if @cheapest %>
   <dt>当前最便宜价格</dt>
-  <dd><%= link_to @cheapest.current_price, go_path(@cheapest, lib: @cheapest.lib) %></dd>
+  <dd><%= link_to @cheapest.current_price, go_path(id: @cheapest.sn, lib: @cheapest.lib), target: '_blank', rel: 'external nofollow' %></dd>
+  <% end -%>
 <% end -%>
 
 <% unless @wine_monitor_groups.blank? %>
@@ -31,7 +33,7 @@
           <h4><%= norm ? norm.to_s + 'ml' : '默认规格' %></h4>
           <% norm_wine_monitors.each do |wine_monitor| %>
             <ul class="unstyled bb mb10">
-              <li><%= link_to wine_monitor.name, go_path(wine_monitor, lib: wine_monitor.lib) %><%=  "(已下架)" if wine_monitor.finished_at %><div class="pull-right"><%= wine_monitor.current_price %>元&nbsp;<%= link_to '历史详情', wine_monitor %></div></li>
+              <li><%= link_to wine_monitor.name, go_path(id: wine_monitor.sn, lib: wine_monitor.lib), target: '_blank', rel: 'external nofollow' %><%=  "(已下架)" if wine_monitor.finished_at %><div class="pull-right"><%= wine_monitor.current_price %>元&nbsp;<%= link_to '历史详情', wine_monitor %></div></li>
             </ul>
           <% end -%>
         <% end -%>
