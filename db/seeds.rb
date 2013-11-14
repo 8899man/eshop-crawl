@@ -21,3 +21,4 @@ Website.where(name: '京东', url: 'http://www.jd.com', lib: 'Jd').first_or_crea
 Website.where(name: '当当', url: 'http://www.dangdang.com', lib: 'Dangdang').first_or_create
 Website.where(name: '也买酒', url: 'http://www.yesmywine.com/', lib: 'Yesmywine').first_or_create
 Website.where(name: '也买酒商城', url: 'http://mall.yesmywine.com/', lib: 'YesmywineMall').first_or_create
+Website.where(name: '品尚红酒', url: 'http://www.wine9.com/', lib: 'Wine9').first_or_create
