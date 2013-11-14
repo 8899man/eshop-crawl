@@ -42,7 +42,7 @@ class WineMonitor
   def monitoring_remind
     user_monitors.where(:warn_price.gte => current_price).each do |user_monitor|
       UserMailer.user_monitor(user_monitor).deliver
-    end
+    end if current_price and current_price > 0
   end
 
   def set_wine_price
