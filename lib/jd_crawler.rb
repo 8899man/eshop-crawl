@@ -4,7 +4,7 @@ class JdCrawler < Crawler
     @format_url = 'http://item.jd.com/%d.html'
     @format_event_url = 'http://jprice.360buy.com/pageadword/%d-1-1.html?callback=Promotions.set'
     @regx_event_json = /Promotions.set\((?<event_string>.*)\);/
-    @regx_name = /<h1>(?<name>.*)<\/h1>/m
+    @regx_name = /<h1>(?<name>.*?)<\/h1>/m
     @regx_description = [/(?<description><ul class="detail-list">.*?<\/ul>)/m , /<div class="detail-content">(?<description>.*?)<\/div>\s+<\/div>\s+<div class="mc  hide" data-widget="tab-content" id="product-detail-2">/m]
   end
 
