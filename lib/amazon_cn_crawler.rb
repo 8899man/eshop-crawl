@@ -20,7 +20,6 @@ class AmazonCnCrawler < Crawler
           tag_price: m[:tag_price] || m[:current_price],
           website: wine_monitor.website
       rescue Exception => ex
-        debugger
         p "AmazonCnCrawler get error #{url}"
       end
     end
@@ -42,7 +41,6 @@ class AmazonCnCrawler < Crawler
         description = matches.map{|match| match[:description]}.join("\n<p class='wine_crawler_hr'></p>\n")
         wine_monitor.update_attributes description: description, name: name, norm: norm
       rescue Exception => ex
-        debugger
         p "AmazonCnCrawler init error #{url}"
       end
     end
