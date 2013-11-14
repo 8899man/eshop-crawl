@@ -12,7 +12,7 @@ class WineMonitorsController < InheritedResources::Base
 
   def links
     if YAML.load(ENV['CRAWLS']).include?(params[:lib])
-      redirect_to params[:lib].constantize.new({id: params[:id]}).url
+      redirect_to params[:lib].constantize.new({id: params[:id]}).go_url
     end
   end
 

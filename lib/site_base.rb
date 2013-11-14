@@ -11,6 +11,14 @@ class SiteBase
     @url
   end
 
+  def go_url
+    ad_url || @url
+  end
+
+  def ad_url
+    nil
+  end
+
   def is?(url)
     !!regex_id.match(url)
   end
