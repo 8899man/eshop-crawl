@@ -9,7 +9,7 @@ class YesmywineMallCrawler
     @regx_name_tuan = /<h3 class="tuan-title">(?<name>.*?)<\/h3>/m
     @regx_description = [/<div class="xiangqing">(?<description>.*?)<\/div>/m , /<div class="proContent">(?<description>.*?)<\/div>[\s\n]+<\/div>[\s\n]+<!-- 单品页-用户评论 -->/m]
     @regx_finish = /很抱歉，您查找的页面或商品没有找到！/m
-    @regx_norm = /<b>(?:容量|净含量|商品容量)<\/b>[\s\n\t]+(?<norm>\d+)(?<ml>m)?l<\/span>/mi
+    @regx_norm = /<b>(?:容量|净含量|商品容量)<\/b>[\s\n\t]+(?<norm>[\d\.]+)((?<ml>m)?(?<l>l))?<\/span>/mi
   end
 
   def get(wine_monitor)
@@ -47,10 +47,10 @@ class YesmywineMallCrawler
         wine_monitor.finish if @regx_finish.match(body)
         match_name = @regx_name.match(body)
         match_name = @regx_name_tuan.match(body) unless match_name
-        name = match_name[:name].strip.gsub(/[\t\n ]+/,'')
+        name = match_name[:name].strip.gsub(/[\t\n]+/,'')
         match_norm = @regx_norm.match(body)
         norm = match_norm[:norm]
-        norm = norm.to_f * 1000 unless match_norm[:ml]
+        norm = norm.to_f * 1000 if !match_norm[:ml] and match_norm[:l]
         matches = @regx_description.map{|r| r.match body}
         description = matches.map{|match| match[:description]}.join("\n<p class='wine_crawler_hr'></p>\n")
         wine_monitor.update_attributes description: description, name: name, norm: norm
