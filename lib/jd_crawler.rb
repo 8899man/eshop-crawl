@@ -30,7 +30,25 @@ class JdCrawler < Crawler
               #event_strings.push "直降#{event['discount']}" if event['discount']
               event_strings.push "满 #{event['needMondey']} 减 #{event['reward']}" if event['reward'].to_f != 0.0
               event_strings.push "赠 #{event['adwordCouponList'][0]['couponQouta']} 京卷" unless event['adwordCouponList'].blank?
-              event_strings.push "满 #{event['needMondey']} 加 #{event['addMoney']} 赠 <a href='#{event['adwordUrl']}'>赠品</a>" if event['addMoney'].to_f != 0.0
+              event_strings.push "满 #{event['needMondey']} 加 #{event['addMoney']} 赠 <a href='#{event['adwordUrl']}' rel='external nofollow'>赠品</a>" if event['addMoney'].to_f != 0.0
+              if event['minNum'] > 0 or event['maxNum'] > 0
+                if event['minNum'] >= 1 and event['maxNum'] == 0
+                  event_strings.push "满 #{event['minNum']} 件时享受优惠"
+                elsif event['minNum'] == 0 and event['maxNum'] >= 1
+                  event_strings.push "最多购买 #{event['maxNum']} 件时享受优惠"
+                elsif event['minNum'] < event['maxNum']
+                  event_strings.push "购买 #{event['minNum']}~#{event['maxNum']} 件时享受优惠"
+                elsif event['minNum'] == event['maxNum']
+                  event_strings.push "购买 #{event['minNum']} 件时享受优惠"
+                end
+              end
+              if event['promoType'] == 1
+                if event['extType'] == 8
+                  event_strings.push "闪团"
+                elsif  event['extType'] == 4
+                  event_strings.push "团购"
+                end
+              end
             end
           end
           ph = wine_monitor.wine_prices.create current_price: j['p'], tag_price: j['m'], website: wine_monitor.website, plus_string: plus_string, event_string: event_strings.join(',')
