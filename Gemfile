@@ -1,6 +1,6 @@
 source 'http://ruby.taobao.org'
-ruby '2.0.0'
-gem 'rails', '3.2.14'
+ruby '2.1.0'
+gem 'rails', '3.2.16'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -57,7 +57,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'debugger'
+  gem 'debugger', github: 'cldwalker/debugger'
 end
 group :production do
   gem 'thin'
