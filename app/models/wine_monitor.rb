@@ -27,6 +27,7 @@ class WineMonitor
   scope :recent, desc(:updated_at)
   scope :cheapest, asc(:current_price)
   scope :running, where(:finished_at => nil)
+  scope :finished, where(:finished_at.nin => [nil])
   scope :cheapest_per_liter, asc(:price_per_liter)
 
   #validates :wines, presence: true
@@ -66,6 +67,10 @@ class WineMonitor
 
   def finish
     update_attribute :finished_at, Time.now if finished_at.nil?
+  end
+
+  def restart
+    update_attribute :finished_at, nil unless finished_at.nil?
   end
 
   def set_price_per_liter
