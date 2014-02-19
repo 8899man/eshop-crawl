@@ -1,26 +1,94 @@
 报价
 http://p.3.cn/prices/get?skuid=J_1017288713
 http://p.3.cn/prices/get?skuid=J_:id
-[{"id":"J_1017288713","p":"82.00","m":"138.00"}]
+[{"id":"J_1017288713",
+  "p":"82.00",
+  "m":"138.00"}]
 
-副标题
-http://jprice.jd.com/adslogan/598302-setproductadwords.ad
+  副标题
+  http://jprice.jd.com/adslogan/598302-setproductadwords.ad
 http://jprice.jd.com/adslogan/:id-setproductadwords.ad
-setproductadwords({"AdWordList":[{"waretitle":"\u0033\u0032\u0038\u0038\u518D\u8FD4\u0031\u0030\u0030\u5143\u5238\uFF01\u3010\u91D1\u79CB\u98CE\u66B4\u00B7\u75AF\u72C2\u518D\u7EED\u0031\u5929\u3011\u9650\u65F6\u52A0\u9001\u7CBE\u54C1\u708A\u5177\u5957\u88C5\uFF01\u4ECA\u665A\u0032\u0034\u70B9\u7ED3\u675F\uFF01\u6B64\u4EF7\u592A\u9707\u64BC\u6B27\u5F0F\u9AD8\u6548\u9759\u5438\u9500\u91CF\u51A0\u519B\u5957\u88C5\uFF0C\u591A\u5730\u5E93\u5B58\u544A\u6025\u0020\u624B\u6162\u540E\u6094\uFF01","wid":598302}]})
+setproductadwords({"AdWordList":[{"waretitle":"\u0033\u0032\u0038\u0038\u518D\u8FD4\u0031\u0030\u0030\u5143\u5238\uFF01\u3010\u91D1\u79CB\u98CE\u66B4\u00B7\u75AF\u72C2\u518D\u7EED\u0031\u5929\u3011\u9650\u65F6\u52A0\u9001\u7CBE\u54C1\u708A\u5177\u5957\u88C5\uFF01\u4ECA\u665A\u0032\u0034\u70B9\u7ED3\u675F\uFF01\u6B64\u4EF7\u592A\u9707\u64BC\u6B27\u5F0F\u9AD8\u6548\u9759\u5438\u9500\u91CF\u51A0\u519B\u5957\u88C5\uFF0C\u591A\u5730\u5E93\u5B58\u544A\u6025\u0020\u624B\u6162\u540E\u6094\uFF01",
+    "wid":598302}]})
 
 促销信息
 http://jprice.360buy.com/pageadword/202567-1-1.html?callback=Promotions.set
- Promotions.set(
- {"skuId":"202567","subsidyMoney":null,
- "promotionInfoList":[
- {"percent":0.0,"price":null,"reward":null,"maxNum":0,"minNum":0,"fullRefundType":0,"discount":"15.00","score":0,"limitUserType":0,"needNum":0,"deliverNum":0,"rebate":0.0,"promoId":"90314041","promoEndTime":1379296800000,"promoType":1,"adword":null,"userLevel":50,"adwordCouponList":null,"adwordGiftSkuList":null,"addMoney":null,"haveFullRefundGifts":false,"adwordUrl":null,"needMondey":null,"topMoney":null,"fullLadderDiscountList":null,"limitTimePromo":0,"extType":0,"mzNeedMoney":null,"mzNeedNum":0},
-  ## discount:"15.00" 直降15
- {"percent":0.0,"price":null,"reward":"70.0","maxNum":0,"minNum":0,"fullRefundType":1,"discount":null,"score":0,"limitUserType":0,"needNum":0,"deliverNum":0,"rebate":0.0,"promoId":"90273698","promoEndTime":0,"promoType":10,"adword":"","userLevel":0,"adwordCouponList":null,"adwordGiftSkuList":null,"addMoney":"0.0","haveFullRefundGifts":false,"adwordUrl":"http://sale.jd.com/act/R5jdwPIFb0U4GHo.html","needMondey":"300.0","topMoney":"0.0","fullLadderDiscountList":null,"limitTimePromo":0,"extType":0,"mzNeedMoney":null,"mzNeedNum":0}],
+Promotions.set({
+  "skuId":"1080701824", // 物品ID
+    "promotionInfoList":[
+    {
+    "price":null,//promoType=1 price>0 ： 会员特享、会员限购、限购（minNum>1,每件享这个价）、京豆优惠购
+    "reward":null,
+    "maxNum":0,//buyNum 最多 限购
+    "minNum":0,//buyNum 最少 限购
+    "fullRefundType":0,//
+          //满 赠、返
+          //var FULL_REFUND = 1; 可以
+          //每满赠、返
+          //var FULL_REFUND_PER = 2; 可以 满needMoney减reward（最多可减topMoney）、每满送（赠品haveGifts|卷jq）
+          //加价购
+          //var EXTRA_PRICE = 4;
+          //阶梯满减
+          //var FULL_LADDER = 6;//满needMoney，减percent*100 %
+          //满返百分比
+          //var PERCENT = 8;//满needMoney，减percent*100 %
+          // M元买N件
+          //var FULLREFUND_MPRICE_NNUM = 13;
+          // 满M件赠
+          //var FULLREFUND_MNUN_ZENG = 14;
+          // 满M件N折
+          //var FULLNUM_MNUM_NREBATE = 15;
+          // 满返满赠叠加促销
+          //var FULLPRICE_MFMZ = 16;
+          // 满M件N折和满赠叠加促销
+          //var FULLNUM_REBATE_MFMZ = 17;
+          //满返满赠促销子类型
+          // 11 满返满赠促销大类型
+          //adwordUrl，满needNum立减最低deliverNum件商品价格
+
+    "limitUserType":0,
+    "promoId":"165632234",
+    "needNum":0,
+    "deliverNum":0,
+    "discount":"139.00",//优惠：普通直降、限购
+    "addMoney":null,
+    "score":0,
+    "rebate":0.0,//封顶促销(rebate*10).toFixed(1)折封顶
+    "promoEndTime":1392859800000,//活动结束时间
+    "promoType":1,// 1单品促销, 10满返满赠促销, 4赠品促销， 15封顶促销，2买多赠多
+    "adword":null,
+    "adwordCouponList":null,//优惠卷列表、满返、赠
+    "promoFlags":null,
+    "needJBeanNum":0,//京豆优惠购
+    "extType":4,//promoType=1, 8闪团、4团购
+    "userLevel":50,//会员等级
+    "adwordGiftSkuList":null,//赠品列表：买多赠多、赠品促销 {giftType == 2 赠完为止？ 1附件（类似数码配的）}
+    "limitTimePromo":1,//限时打折
+    "adwordUrl":null,//活动链接
+    "topMoney":null,
+    "haveFullRefundGifts":false,//有礼物
+    "fullLadderDiscountList":null,// 满减赠、阶梯满减
+    "mfmzExtType":0,
+    "needMondey":null,
+    "mzNeedMoney":null,
+    "mzNeedNum":0,
+    "percent":0.0//百分比满减
+    }
+],
+  "infoList":[],//不能使用1东卷2京卷，3上门取送维修
+  "subsidyMoney":null,//节能补贴 已取消
+  "skuExtInfo":""
+});
+
+
 ## reward:"70.0",needMondey:"300.0" 满减300减70
 ##"promoId":"90273698" 满减ID？  "promoType":10,满减分类
 ##"adwordUrl":"http://sale.jd.com/act/R5jdwPIFb0U4GHo.html", 活动网址
- "skuExtInfo":"","infoList":[]});
+"skuExtInfo":"",
+  "infoList":[]});
 
 运费
 http://rms.shop.jd.com/json/pop/dcash.action?venderID=29617&areaID=1
-{"dcash":10.0,"dtype":1,"ordermin":55.0}
+{"dcash":10.0,
+  "dtype":1,
+  "ordermin":55.0}
