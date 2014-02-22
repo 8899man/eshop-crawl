@@ -18,6 +18,9 @@ class WineMonitor
   belongs_to :user
 
   taggable_on :categories
+  taggable_on :countries
+  taggable_on :types
+  taggable_on :brands
   has_many :wine_prices
   has_and_belongs_to_many :wines
   has_many :comments, as: :commentable
