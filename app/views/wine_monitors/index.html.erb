@@ -13,12 +13,15 @@
           最低价
           <span class="sign <%= params[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if params[:sort] and params[:sort].match(/min_price_/) %>"></span>
         </th>
+        <!--
         <th class="sort" data-column="price_per_liter">
           <span class="sign <%= params[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if params[:sort] and params[:sort].match(/price_per_liter_/) %>"></span>
           <span>升均价</span>
         </th>
+        -->
         <th>促销活动</th>
         <th>更新时间</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>

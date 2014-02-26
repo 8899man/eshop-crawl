@@ -17,6 +17,7 @@ class WineMonitor
   belongs_to :website
   belongs_to :user
 
+  taggable_on :main_types
   taggable_on :categories
   taggable_on :countries
   taggable_on :types
@@ -37,7 +38,7 @@ class WineMonitor
   validates :sn, presence: true, uniqueness: { :scope => :website }
 
   after_update :set_price_per_liter, :set_wine_price, :monitoring_remind
-  after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price
+  after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price, :refilter
 
   def to_s
     name
@@ -105,6 +106,10 @@ class WineMonitor
 
   def get_price
     (lib + "Crawler").constantize.new.get(self)
+  end
+
+  def refilter
+    WineFilterController.new.refilter_wine_monitor self
   end
 
   def self.categories
