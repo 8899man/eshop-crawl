@@ -33,6 +33,16 @@ class WineMonitorsController < InheritedResources::Base
     render :index
   end
 
+  def search
+    s = WineMonitor.full_search(params[:q], params[:page])
+    @wine_monitors = s.results
+    respond_to do |f|
+      #f.json{render json: {results: @wine_monitor, has_next: !@wine_monitor.last_page?}}
+      f.html
+    end
+  end
+
+
   protected
   def collection
     add_crumb(I18n.t("controller.wine_monitors"), wine_monitors_path)

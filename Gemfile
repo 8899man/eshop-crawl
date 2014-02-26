@@ -68,3 +68,7 @@ group :test do
   gem 'email_spec'
   gem 'mongoid-rspec'
 end
+
+gem 'sunspot_mongoid2'
+gem 'sunspot_rails'
+gem 'sunspot_solr'

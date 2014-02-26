@@ -2,6 +2,7 @@ class WineMonitor
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::TaggableOn
+  include Sunspot::Mongoid2
   field :lib, type: String
   field :sn, type: String
   field :min_price, type: Money
@@ -22,6 +23,15 @@ class WineMonitor
   taggable_on :countries
   taggable_on :types
   taggable_on :brands
+
+  searchable do
+    text :name
+    text :countries
+    text :main_types
+    text :types
+    text :brands
+  end
+
   has_many :wine_prices
   has_and_belongs_to_many :wines
   has_many :comments, as: :commentable
@@ -118,5 +128,19 @@ class WineMonitor
 
   def self.category(category_name)
     WineMonitor.tagged_with_on(:categories, category_name)
+  end
+
+  def self.full_search q, page = 1
+    if q.blank?
+      q = '请输入搜索内容'
+    else
+      q = q.gsub('"', '"\\')
+    end
+    s = WineMonitor.search do
+      fulltext q do
+        boost_fields :name => 1.0
+      end
+      paginate per_page: 10, page: page
+    end
   end
 end
