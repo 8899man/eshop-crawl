@@ -26,10 +26,11 @@ class WineMonitor
 
   searchable do
     text :name
-    text :countries
-    text :main_types
-    text :types
-    text :brands
+    string :countries, multiple: true
+    string :main_types, multiple: true
+    string :types, multiple: true
+    string :brands, multiple: true
+    time :updated_at
   end
 
   has_many :wine_prices
@@ -130,17 +131,18 @@ class WineMonitor
     WineMonitor.tagged_with_on(:categories, category_name)
   end
 
-  def self.full_search q, page = 1
-    if q.blank?
-      q = '请输入搜索内容'
-    else
-      q = q.gsub('"', '"\\')
-    end
+  def self.full_search q, page = 1, plus = {}
+    q ||= ''
+    q = q.gsub('"', '"\\')
     s = WineMonitor.search do
       fulltext q do
-        boost_fields :name => 1.0
+        boost_fields :name => 3.0
       end
-      paginate per_page: 10, page: page
+      ['main_type', 'type', 'country', 'brand'].each do |str|
+        with (str+'s'), plus[str] unless plus[str].blank?
+      end
+      #order_by :updated_at, :desc
+      paginate per_page: 20, page: page
     end
   end
 end

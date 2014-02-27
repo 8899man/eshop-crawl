@@ -1,6 +1,7 @@
 <h1>酒监视器列表</h1>
 <div class="tabbable">
-  <%= render_cell :wine_monitors, :categories, category: @category, class: WineMonitor %>
+  <%#= render_cell :wine_monitors, :categories, category: @category, class: WineMonitor %>
+  <%= render_cell :wine_monitors, :tags, args: params %>
   <table class="table table-striped table-hover sortable">
     <thead>
       <tr>
@@ -32,13 +33,13 @@
     <%= paginate @wine_monitors %>
   </div>
 </div>
-<script type="text/javascript">
-  $('th.sort').click(function(){
-    if($(this).children('.reversed.up').length > 0 || $(this).children('.reversed').length == 0){
-      window.location.href="?sort=" + $(this).data('column') + '_asc';
-    }
-    else{
-      window.location.href = "?sort=" + $(this).data('column') + '_desc';
-    }
-  })
-</script>
+<%#<script type="text/javascript">%>
+  <%#$('th.sort').click(function(){%>
+    <%#if($(this).children('.reversed.up').length > 0 || $(this).children('.reversed').length == 0){%>
+      <%#window.location.href="?sort=" + $(this).data('column') + '_asc';%>
+    <%#}%>
+    <%#else{%>
+      <%#window.location.href = "?sort=" + $(this).data('column') + '_desc';%>
+    <%#}%>
+  <%#})%>
+<%#</script>%>

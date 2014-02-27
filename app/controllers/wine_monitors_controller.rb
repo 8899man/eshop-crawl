@@ -3,6 +3,14 @@ class WineMonitorsController < InheritedResources::Base
   actions :index, :show, :new, :create
   layout 'sidebar', only: :show
 
+  def index
+    index! do
+      ['main_type', 'type', 'country', 'brand'].each do |sym|
+        @wine_monitors = @wine_monitors.tagged_with_on(sym.tableize.to_sym, params[sym]) unless params[sym].blank?
+      end
+    end
+  end
+
   def show
     show! do
       add_crumb(I18n.t("controller.wine_monitors"), wine_monitors_path)
@@ -34,12 +42,19 @@ class WineMonitorsController < InheritedResources::Base
   end
 
   def search
-    s = WineMonitor.full_search(params[:q], params[:page])
+    if params[:q].blank?
+      redirect_to wine_monitors_path
+    else
+    s = WineMonitor.full_search(params[:q], params[:page], params)
+    @keys = params[:q].blank? ? [] : params[:q].split(' ').uniq
     @wine_monitors = s.results
-    respond_to do |f|
-      #f.json{render json: {results: @wine_monitor, has_next: !@wine_monitor.last_page?}}
-      f.html
+    add_crumb(I18n.t("controller.wine_monitors"), wine_monitors_path)
+    add_crumb('搜索')#, categories_wine_monitors_path)
     end
+    #respond_to do |f|
+      #f.json{render json: {results: @wine_monitor, has_next: !@wine_monitor.last_page?}}
+      #f.html
+    #end
   end
 
 

@@ -28,6 +28,10 @@ class WineFilter
     }
   end
 
+  def country_values
+    countries.values.uniq
+  end
+
   def countries_keys_regexp
     @countries_keys_regexp ||= Regexp.new(countries.keys.join('|'), Regexp::IGNORECASE | Regexp::MULTILINE)
   end
@@ -36,7 +40,8 @@ class WineFilter
     @brands ||={
       '拉菲' => '拉菲',
       '干露' => '干露',
-      '奔富洛神' => '奔富洛神',
+      #'奔富洛神' => '奔富洛神',
+      '奔富' => '奔富',
       '百家得' => '百家得',
       '芝华士' => '芝华士',
       '马爹利' => '马爹利',
@@ -148,6 +153,10 @@ class WineFilter
     @brands_keys_regexp ||= Regexp.new(brands.keys.join('|'), Regexp::IGNORECASE | Regexp::MULTILINE)
   end
 
+  def brand_values
+    brands.values.uniq
+  end
+
   #multi
   def types
     @types ||= {
@@ -243,6 +252,10 @@ class WineFilter
     }
   end
 
+  def type_values
+    children_types.values.uniq
+  end
+
   def children_types
     if @children_types.blank?
       @children_types = {}
@@ -255,6 +268,10 @@ class WineFilter
 
   def main_types
     @main_types ||= types.keys
+  end
+
+  def main_type_values
+    main_types
   end
 
   def types_keys_regexp

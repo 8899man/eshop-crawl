@@ -1,0 +1,32 @@
+<% ['main_type', 'type', 'country', 'brand'].each do |sym| %>
+  <ul class="nav nav-pills">
+    <%= content_tag 'li', class: (@args[sym].nil? ? 'active' : '') do -%>
+      <% tmp = @args.clone %>
+      <% tmp.delete(sym) %>
+      <%= link_to '全部', tmp %>
+    <% end -%>
+
+    <% temps = @wine_filter.send(sym + '_values') %>
+
+    <% unless temps.blank? %>
+      <% temps[0..9].each do |tag| %>
+        <%= content_tag 'li', class: (tag == @args[sym] ? 'active' : '') do -%>
+          <% tmp = @args.clone %>
+          <% tmp[sym] = tag %>
+          <%= link_to tag, tmp %>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+
+    <%  if temps.length > 10 %>
+      <% temps[10..-1].each do |tag| %>
+        <%= content_tag 'li', class: 'h ' + (tag == @args[sym] ? 'active' : '') do -%>
+          <% tmp = @args.clone %>
+          <% tmp[sym] = tag %>
+          <%= link_to tag, tmp %>
+        <% end -%>
+      <% end -%>
+      <li><a href='javascript:void(0);' onclick="toggle_tags(this);">+</a></li>
+    <% end %>
+  </ul>
+<% end -%>
