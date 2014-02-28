@@ -7,7 +7,8 @@ class WineLink
   belongs_to :user
   belongs_to :wine_monitor
 
-  validates :url, presence: true, format: {with: /https?:\/\/.*/i }
+  validates :url, presence: true, format: {with: /^https?:\/\/.*/i }, uniqueness: true
+  scope :undeal, where(deal_at: nil)
 
   after_create :test_deal
   def test_deal

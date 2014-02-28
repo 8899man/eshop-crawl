@@ -32,11 +32,10 @@ class JdListCrawler < Crawler
   end
 
   def get_page(category_id, page)
-    url = @format_url % [category_id, 1]
+    url = @format_url % [category_id, page]
     page = Nokogiri::HTML(open(url))
-    page.css('#plist .p-name a').map{|p| p.attr 'href'}.each do |link|
-      WineLink.create url: link
-    end
+    urls = page.css('#plist .p-name a').map{|link| Hash[:url, link.attr('href')]}
+    WineLink.create urls
   end
 
 end

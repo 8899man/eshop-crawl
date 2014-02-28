@@ -77,13 +77,15 @@ class WineFilterController
   end
 
   def refilter_type wine_monitor
-    types = []
-    wine_monitor.name.scan(@types_keys_regexp).each do |key|
-      types.push @children_types[key]
-    end
+    if wine_monitor and !wine_monitor.name.blank?
+      types = []
+      wine_monitor.name.scan(@types_keys_regexp).each do |key|
+        types.push @children_types[key]
+      end
 
-    wine_monitor.type_list = types.join(',')
-    wine_monitor.save if wine_monitor.type_list_changed?
-    filter_main_type(wine_monitor)
+      wine_monitor.type_list = types.join(',')
+      wine_monitor.save if wine_monitor.type_list_changed?
+      filter_main_type(wine_monitor)
+    end
   end
 end

@@ -3,7 +3,7 @@
     <td><%= link_to wine_monitor.name.try(:html_safe), wine_monitor,target: '_blank', title: wine_monitor.name.try(:html_safe) %></td>
     <td><%= wine_monitor.current_price %></td>
     <td><%= wine_monitor.min_price %></td>
-    <td><%= wine_monitor.event_string.try(:block,30) %></td>
+    <td><%= wine_monitor.event_string.try(:block,20) %></td>
     <td><%= wine_monitor.updated_at.cc_time %></td>
     <td>
       <%= link_to '直接访问', go_path(id: wine_monitor.sn, lib: wine_monitor.lib), class: 'btn btn-primary', target: '_blank', rel: 'external nofollow' %>
