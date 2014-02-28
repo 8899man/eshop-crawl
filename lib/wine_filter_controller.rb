@@ -25,7 +25,6 @@ class WineFilterController
     refilter_country wine_monitor
     refilter_brand wine_monitor
     refilter_type wine_monitor
-    p 'success:' + wine_monitor.name.to_s
   end
 
   def refilter_countries

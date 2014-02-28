@@ -16,5 +16,11 @@ class CrawlerController
       #end
     end
   end
+
+  def get_all_list
+    [JdListCrawler].each do |cls|
+      cls.new.get_all_list
+    end
+  end
 end
 
