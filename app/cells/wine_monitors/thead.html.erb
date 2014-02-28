@@ -1,28 +1,18 @@
 <thead>
   <tr>
     <th>标题</th>
-    <th class="sort" data-column="current_price">
-      <% tmp = @args.clone %>
-      <% tmp['sort'] = (!tmp['sort'].blank? and tmp['sort'].match(/asc/)) ? 'current_price_desc' : 'current_price_asc'   %>
-      <%= link_to tmp do %>
-        现价
-        <span class="sign <%= @args[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if @args[:sort] and @args[:sort].match(/current_price_/) %>"></span>
-      <% end -%>
+    <% tmp = @args.clone %>
+    <% tmp['sort'] = (!tmp['sort'].blank? and tmp['sort'].match(/asc/)) ? 'current_price_desc' : 'current_price_asc'   %>
+    <th class="sort" data-column="current_price" onclick="to('<%= url_for tmp %>')">
+      现价
+      <span class="sign <%= @args[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if @args[:sort] and @args[:sort].match(/current_price_/) %>"></span>
     </th>
-    <th class="sort" data-column="min_price">
-      <% tmp = @args.clone %>
-      <% tmp['sort'] = (!tmp['sort'].blank? and tmp['sort'].match(/asc/)) ? 'min_price_desc' : 'min_price_asc'   %>
-      <%= link_to tmp do %>
-        最低价
-        <span class="sign <%= @args[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if @args[:sort] and @args[:sort].match(/min_price_/) %>"></span>
-      <% end -%>
+    <% tmp = @args.clone %>
+    <% tmp['sort'] = (!tmp['sort'].blank? and tmp['sort'].match(/asc/)) ? 'min_price_desc' : 'min_price_asc'   %>
+    <th class="sort" data-column="min_price" onclick="to('<%= url_for tmp %>')">
+      最低价
+      <span class="sign <%= @args[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if @args[:sort] and @args[:sort].match(/min_price_/) %>"></span>
     </th>
-    <!--
-    <th class="sort" data-column="price_per_liter">
-      <span class="sign <%= @args[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if @args[:sort] and @args[:sort].match(/price_per_liter_/) %>"></span>
-      <span>升均价</span>
-    </th>
-    -->
     <th>促销活动</th>
     <th>更新时间</th>
     <th></th>
