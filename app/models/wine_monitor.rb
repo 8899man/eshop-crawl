@@ -30,6 +30,8 @@ class WineMonitor
     string :main_types, multiple: true
     string :types, multiple: true
     string :brands, multiple: true
+    float :current_price
+    float :min_price
     time :updated_at
   end
 
@@ -141,7 +143,10 @@ class WineMonitor
       ['main_type', 'type', 'country', 'brand'].each do |str|
         with (str+'s'), plus[str] unless plus[str].blank?
       end
-      #order_by :updated_at, :desc
+      if plus[:sort] and @match_sort = plus[:sort].match(/(.*)_(asc|desc)/)
+        order_by @match_sort[1].to_sym, @match_sort[2].to_sym if ['current_price', 'min_price'].include?(@match_sort[1])
+        #order_by :updated_at, :desc
+      end
       paginate per_page: 20, page: page
     end
   end

@@ -15,4 +15,10 @@ class WineMonitorsCell < Cell::Rails
     render
   end
 
+  def thead(args)
+    @args = args[:args]
+    @wine_filter = WineFilter.new
+    render
+  end
+
 end
