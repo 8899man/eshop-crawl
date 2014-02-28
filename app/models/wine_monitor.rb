@@ -2,6 +2,7 @@ class WineMonitor
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::TaggableOn
+  include Sunspot::Mongoid2
   field :lib, type: String
   field :sn, type: String
   field :min_price, type: Money
@@ -17,7 +18,23 @@ class WineMonitor
   belongs_to :website
   belongs_to :user
 
+  taggable_on :main_types
   taggable_on :categories
+  taggable_on :countries
+  taggable_on :types
+  taggable_on :brands
+
+  searchable do
+    text :name
+    string :countries, multiple: true
+    string :main_types, multiple: true
+    string :types, multiple: true
+    string :brands, multiple: true
+    float :current_price
+    float :min_price
+    time :updated_at
+  end
+
   has_many :wine_prices
   has_and_belongs_to_many :wines
   has_many :comments, as: :commentable
@@ -34,7 +51,7 @@ class WineMonitor
   validates :sn, presence: true, uniqueness: { :scope => :website }
 
   after_update :set_price_per_liter, :set_wine_price, :monitoring_remind
-  after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price
+  after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price, :refilter
 
   def to_s
     name
@@ -104,11 +121,33 @@ class WineMonitor
     (lib + "Crawler").constantize.new.get(self)
   end
 
+  def refilter
+    WineFilterController.new.refilter_wine_monitor self
+  end
+
   def self.categories
     all.map(&:categories).flatten.uniq
   end
 
   def self.category(category_name)
     WineMonitor.tagged_with_on(:categories, category_name)
+  end
+
+  def self.full_search q, page = 1, plus = {}
+    q ||= ''
+    q = q.gsub('"', '"\\')
+    s = WineMonitor.search do
+      fulltext q do
+        boost_fields :name => 3.0
+      end
+      ['main_type', 'type', 'country', 'brand'].each do |str|
+        with (str+'s'), plus[str] unless plus[str].blank?
+      end
+      if plus[:sort] and @match_sort = plus[:sort].match(/(.*)_(asc|desc)/)
+        order_by @match_sort[1].to_sym, @match_sort[2].to_sym if ['current_price', 'min_price'].include?(@match_sort[1])
+        #order_by :updated_at, :desc
+      end
+      paginate per_page: 20, page: page
+    end
   end
 end

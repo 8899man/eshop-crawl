@@ -1,26 +1,9 @@
 <h1>酒监视器列表</h1>
 <div class="tabbable">
-  <%= render_cell :wine_monitors, :categories, category: @category, class: WineMonitor %>
+  <%#= render_cell :wine_monitors, :categories, category: @category, class: WineMonitor %>
+  <%= render_cell :wine_monitors, :tags, args: params %>
   <table class="table table-striped table-hover sortable">
-    <thead>
-      <tr>
-        <th>标题</th>
-        <th class="sort" data-column="current_price">
-          现价
-          <span class="sign <%= params[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if params[:sort] and params[:sort].match(/current_price_/) %>"></span>
-        </th>
-        <th class="sort" data-column="min_price">
-          最低价
-          <span class="sign <%= params[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if params[:sort] and params[:sort].match(/min_price_/) %>"></span>
-        </th>
-        <th class="sort" data-column="price_per_liter">
-          <span class="sign <%= params[:sort].match(/asc/) ? 'reversed' : 'reversed up'  if params[:sort] and params[:sort].match(/price_per_liter_/) %>"></span>
-          <span>升均价</span>
-        </th>
-        <th>促销活动</th>
-        <th>更新时间</th>
-      </tr>
-    </thead>
+    <%= render_cell :wine_monitors, :thead, args: params %>
     <tbody>
       <%= render 'wine_monitors/trs' %>
     </tbody>
@@ -29,13 +12,13 @@
     <%= paginate @wine_monitors %>
   </div>
 </div>
-<script type="text/javascript">
-  $('th.sort').click(function(){
-    if($(this).children('.reversed.up').length > 0 || $(this).children('.reversed').length == 0){
-      window.location.href="?sort=" + $(this).data('column') + '_asc';
-    }
-    else{
-      window.location.href = "?sort=" + $(this).data('column') + '_desc';
-    }
-  })
-</script>
+<%#<script type="text/javascript">%>
+  <%#$('th.sort').click(function(){%>
+    <%#if($(this).children('.reversed.up').length > 0 || $(this).children('.reversed').length == 0){%>
+      <%#window.location.href="?sort=" + $(this).data('column') + '_asc';%>
+    <%#}%>
+    <%#else{%>
+      <%#window.location.href = "?sort=" + $(this).data('column') + '_desc';%>
+    <%#}%>
+  <%#})%>
+<%#</script>%>

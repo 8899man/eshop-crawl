@@ -1,4 +1,5 @@
 WineCrawl::Application.routes.draw do
+  match '/search' => 'wine_monitors#search'#, defaults: {page: 1}
   authenticated :user do
     root :to => 'wine_monitors#index'
     scope module: 'user' do
@@ -14,6 +15,9 @@ WineCrawl::Application.routes.draw do
     resources :comments, only: [:index,:create]
     get 'category/:id' => 'wine_monitors#category', on: :collection, as: 'category'
     get 'categories' => 'wine_monitors#categories', on: :collection, as: 'categories'
+    #collection do
+      #match :search
+    #end
   end
   resources :wines, only: [:index, :show] do
     resources :comments, only: [:index,:create]

@@ -6,11 +6,11 @@
 
 <%= link_to t('site_title'), root_url(subdomain: ENV['SUBDOMAIN']), :class => 'brand' %>
 <div class="nav-collapse collapse">
-  <ul class="nav pull-right">
+  <ul class="nav navbar-nav navbar-right">
     <%= render_cell :layouts, :login, user: current_user %>
   </ul>
 
-  <ul class="nav">
+  <ul class="nav navbar-nav navbar-left">
     <li>
       <%= link_to '选酒中心', wines_url %>
     </li>
@@ -21,5 +21,8 @@
       <%= link_to '酒价监视', new_wine_link_url %>
     </li>
   </ul>
+  <form class="navbar-form navbar-left" role="search" action="/search">
+    <input type="text" class="form-control" placeholder="搜索..." name="q">
+  </form>
 </div>
 

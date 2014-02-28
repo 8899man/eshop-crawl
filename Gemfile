@@ -1,5 +1,5 @@
 source 'http://ruby.taobao.org'
-ruby '2.1.0'
+ruby '2.1.1'
 gem 'rails', '3.2.16'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -57,7 +57,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'debugger', github: 'cldwalker/debugger'
+  #gem 'debugger', github: 'cldwalker/debugger'
 end
 group :production do
   gem 'thin'
@@ -68,3 +68,7 @@ group :test do
   gem 'email_spec'
   gem 'mongoid-rspec'
 end
+
+gem 'sunspot_mongoid2'
+gem 'sunspot_rails'
+gem 'sunspot_solr'

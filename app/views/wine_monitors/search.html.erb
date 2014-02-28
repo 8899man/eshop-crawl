@@ -1,0 +1,34 @@
+<h1>搜索 <%= params[:q] %> 第<%= params[:page] || 1 %>页</h1>
+<div class="tabbable">
+  <%= render_cell :wine_monitors, :tags, args: params %>
+  <table class="table table-striped table-hover sortable">
+    <%= render_cell :wine_monitors, :thead, args: params %>
+    <tbody>
+      <% @wine_monitors.each do |wine_monitor| %>
+        <tr>
+          <td><%= link_to highlight(wine_monitor.name.try(:html_safe), @keys), wine_monitor,target: '_blank', title: wine_monitor.name.try(:html_safe) %></td>
+          <td><%= wine_monitor.current_price %></td>
+          <td><%= wine_monitor.min_price %></td>
+          <td><%= wine_monitor.event_string.try(:block,30) %></td>
+          <td><%= wine_monitor.updated_at.cc_time %></td>
+          <td>
+            <%= link_to '直接访问', go_path(id: wine_monitor.sn, lib: wine_monitor.lib), class: 'btn btn-primary', target: '_blank', rel: 'external nofollow' %>
+          </td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+  <div class="pull-right">
+    <%= paginate @wine_monitors %>
+  </div>
+</div>
+<%#<script type="text/javascript">%>
+  <%#$('th.sort').click(function(){%>
+    <%#if($(this).children('.reversed.up').length > 0 || $(this).children('.reversed').length == 0){%>
+      <%#window.location.href="?sort=" + $(this).data('column') + '_asc';%>
+    <%#}%>
+    <%#else{%>
+      <%#window.location.href = "?sort=" + $(this).data('column') + '_desc';%>
+    <%#}%>
+  <%#})%>
+<%#</script>%>
