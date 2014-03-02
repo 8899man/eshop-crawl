@@ -89,3 +89,4 @@ public/sitemap.xml*
 
 Gemfile.lock
 solr/
+nohup.out
