@@ -46,6 +46,7 @@ class WineMonitor
   scope :running, where(:finished_at => nil)
   scope :finished, where(:finished_at.nin => [nil])
   scope :cheapest_per_liter, asc(:price_per_liter)
+  default_scope where(:name.nin => [nil,''], :current_price.nin => [nil])
 
   #validates :wines, presence: true
   validates :sn, presence: true, uniqueness: { :scope => :website }
