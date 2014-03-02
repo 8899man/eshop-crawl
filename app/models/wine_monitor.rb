@@ -54,6 +54,11 @@ class WineMonitor
   after_update :set_price_per_liter, :set_wine_price, :monitoring_remind
   after_create :set_price_per_liter, :set_lib, :init_from_page, :get_price, :refilter
 
+  index({ name: 1 }, { background: true })
+  index({ current_price: 1 }, { background: true })
+  index({ min_price: 1 }, { background: true })
+  index({ updated_at: -1 }, { background: true })
+
   def to_s
     name
   end
