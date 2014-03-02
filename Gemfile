@@ -70,5 +70,6 @@ group :test do
 end
 
 gem 'sunspot_mongoid2'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'sunspot_rails'#, github: 'sunspot/sunspot', branch: 'master'
+gem 'sunspot_solr'#, github: 'sunspot/sunspot', branch: 'master'
+#gem 'rsolr', github: 'rsolr/rsolr', branch: 'master'

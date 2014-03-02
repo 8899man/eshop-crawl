@@ -333,7 +333,7 @@ GEM
       nokogiri
       rails (>= 3)
       sunspot (= 2.1.0)
-    sunspot_solr (2.0.0)
+    sunspot_solr (2.1.0)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
