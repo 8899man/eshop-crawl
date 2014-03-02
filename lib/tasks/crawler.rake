@@ -13,4 +13,9 @@ namespace :crawler do
     CrawlerController.new.get_all_list
     puts '获取完毕'
   end
+
+  desc "refilter all winemonitor"
+  task :refilter_all => :environment do
+    WineFilterController.new.refilter_all
+  end
 end
