@@ -1,0 +1,12 @@
+---
+chdir: /opt/ap/rails/wine_crawl
+environment: production
+timeout: 30
+log: log/thin.log
+pid: tmp/pids/thin.pid
+max_conns: 1024
+max_persistent_conns: 512
+require: []
+wait: 30
+daemonize: true
+socket: /tmp/wine.sock
