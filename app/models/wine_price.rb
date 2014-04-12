@@ -36,7 +36,8 @@ class WinePrice
 
   def same?(wine_price)
     return false if wine_price.nil?
-    [current_price, tag_price, website, event_string] == [wine_price.current_price, wine_price.tag_price, wine_price.website, wine_price.event_string]
+    #[current_price, tag_price, website, event_string] == [wine_price.current_price, wine_price.tag_price, wine_price.website, wine_price.event_string]
+    [current_price, tag_price, website] == [wine_price.current_price, wine_price.tag_price, wine_price.website]
   end
 
   def set_wine
