@@ -1,5 +1,5 @@
 source 'http://ruby.taobao.org'
-ruby '2.1.1'
+#ruby '2.1.1'
 gem 'rails', '3.2.16'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
